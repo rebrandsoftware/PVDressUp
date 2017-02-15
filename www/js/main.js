@@ -2058,6 +2058,11 @@ console.log("newTheme: " + newTheme);
 	                	//console.log(app.myContest);
 	                	
 	                	if (app.myContest === null) {
+	                		var category = new Category("Best Costume");
+	                		app.myContest = new Contest(getTimestamp(), "", "Dress Up Party", "Princess Pink", true, false, false, false, false, true, [category], false, false, "", false, "");
+	                	}
+	                	
+	                	if (app.myContest === null) {
 	                		$elInfo.show();
 	                		$elButtons.hide();
 	                		$elResults.hide();
