@@ -36,19 +36,19 @@ $(document).delegate(".ui-page", "pagebeforeshow", function () {
 $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 {
     
-console.log("oldTheme: " + oldTheme);
-console.log("newTheme: " + newTheme);
+//console.log("oldTheme: " + oldTheme);
+//console.log("newTheme: " + newTheme);
     // Updates the theme for all elements that match the
     // CSS selector with the specified theme class.
     function setTheme(cssSelector, themeClass, newTheme)
     {
-    	console.log("setTheme");
+    	//console.log("setTheme");
     	$(cssSelector).each(function() {
     		var theme = $(this).attr('data-theme');
-    		//console.log("if " + theme + " === " + oldTheme);
+    		////console.log("if " + theme + " === " + oldTheme);
     		if (theme === oldTheme) {
-    			console.log('remove: ' + themeClass + "-" + oldTheme);
-    			console.log('addddd: ' + themeClass + "-" + newTheme);
+    			//console.log('remove: ' + themeClass + "-" + oldTheme);
+    			//console.log('addddd: ' + themeClass + "-" + newTheme);
     			$(this).removeClass(themeClass + "-" + oldTheme)
             	.addClass(themeClass + "-" + newTheme)
             	.attr("data-theme", newTheme)
@@ -67,8 +67,8 @@ console.log("newTheme: " + newTheme);
     		var theme = $(this).attr('data-theme');
     		//console.log("if " + theme + " === " + oldTheme);
     		if (theme === oldTheme) {
-    			console.log('remove: ' + themeClass + "-" + oldTheme);
-    			console.log('addddd: ' + themeClass + "-" + newTheme);
+    			//console.log('remove: ' + themeClass + "-" + oldTheme);
+    			//console.log('addddd: ' + themeClass + "-" + newTheme);
     			$(this).removeClass(themeClass + "-" + oldTheme)
             	.addClass(themeClass + "-" + newTheme)
             	.attr("data-theme", newTheme)
