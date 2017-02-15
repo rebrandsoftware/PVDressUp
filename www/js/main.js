@@ -15,7 +15,7 @@ console.error = console.debug = console.info =  console.log;
 
        
 $(document).delegate(".ui-page", "pagebeforeshow", function () {
-	console.log("delegate " + app.currBackgroundColor);
+	//console.log("delegate " + app.currBackgroundColor);
     $(this).css('background', app.currBackgroundColor);
     if (app.myContest) {
         var url = app.myContest.backgroundImage;
@@ -2060,6 +2060,23 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                	if (app.myContest === null) {
 	                		var category = new Category("Best Costume");
 	                		app.myContest = new Contest(getTimestamp(), "", "Dress Up Party", "Princess Pink", true, false, false, false, false, true, [category], false, false, "", false, "");
+	                		app.addCategories(app.myContest.categories, function() {
+	                    		app.store.addContest(app.myContest, function() {
+		                    		var ts = getTimestamp();
+		                    		app.entriesChanged=ts;
+	                    			app.votesChanged=ts;
+	                    			app.categoriesChanged = ts;
+	                    			app.currTheme = app.myContest.style;
+		                    		app.changeStyle(app.myContest.style);
+		                    		// if (app.myContest === null) {
+		                    			// Toast.toast("Contest created!");	
+		                    		// } else {
+		                    			// Toast.toast("Contest saved!");
+		                    		// }
+		                    		//$('#btnResults').show();
+		                    		//changePage("#home");
+	                    		});
+	                    	});
 	                	}
 	                	
 	                	if (app.myContest === null) {
@@ -2076,7 +2093,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                		$elButtons.show();
 	                	}
 	                	
-	                	console.log(JSON.stringify(app.myContest));
+	                	//console.log(JSON.stringify(app.myContest));
 	                	
 	                	
 	                	
