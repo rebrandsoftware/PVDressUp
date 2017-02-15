@@ -1266,7 +1266,9 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
             	var votesText = "";
             	var tieText = "";
             	var written=0;
-            	var shareText="";
+            	var shareHTML="";
+            	var isA1="";
+            	var isA2="";
             	
             	for (var i=0; i<l; i++) {
             		//for each category
@@ -1325,12 +1327,16 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
             				}
             				
             				if (app.myContest.social === true) {
-            					shareText = "<a href='#' data-imgData='" + entry.b64 + "' data-shareText='" + shareText + "' class='shareResults'></a>";
+            					shareHTML = "<a href='#' data-imgData='" + entry.b64 + "' data-shareText='" + shareText + "' class='shareResults'></a>";
+            					isA1 = "<a href='#'>";
+            					isA2 = "</a>";
             				} else {
-            					shareText = "";
+            					shareHTML = "";
+            					isA1 = "";
+            					isA2 = "";
             				}
             				
-		            		html += "<li id='" + i + "|" + j + "'><a href='#'><img src='" + entry.photo + "'><b>" + placeText + tieText + "</b><br><span class='desc'>" + votes + " " + votesText + nameText + "</a>" + shareText + "</li>";
+		            		html += "<li id='" + i + "|" + j + "'>" + isA1 + "<img src='" + entry.photo + "'><b>" + placeText + tieText + "</b><br><span class='desc'>" + votes + " " + votesText + nameText + isA2 + shareHTML + "</li>";
 	            			written ++;
 	            			if (j === 0) {
 	            				app.drawWinnerImage(i, entry, catResults.category.name, app.myContest.name);	
