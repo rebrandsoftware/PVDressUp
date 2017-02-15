@@ -288,9 +288,9 @@
 		          Results
 		        </a>
 		    </div>
-		    
+		    <!--
 		    <div id="debugDiv"></div>
-		    
+		    -->
         </div>
         
         <div data-role="footer" class="ui-bar" data-position="fixed" data-tap-toggle="false" data-theme="a">
@@ -807,14 +807,18 @@
                 <div class="ui-body ui-body-a ui-corner-all">
                     <h3>Options</h3>
                     <label>
+					<input type="checkbox" name="chkSavePhotos" id="chkSavePhotos" /> Save photos to device
+					</label>
+                    <label>
+					<input type="checkbox" name="chkSocial" id="chkSocial" /> Allow photo sharing
+					</label>
+                    <label>
 					<input type="checkbox" name="chkEntryName" id="chkEntryName" /> Allow entry name
 					</label>
 					<label>
 					<input type="checkbox" name="chkEntryCaption" id="chkEntryCaption" /> Allow entry caption
 					</label>
-					<label>
-					<input type="checkbox" name="chkSavePhotos" id="chkSavePhotos" /> Save photos to device
-					</label>
+					
                     <label>
 					    <input type="checkbox" name="chkVoterName" id="chkVoterName" /> Require voter name
 					</label>
@@ -829,7 +833,7 @@
 					</div>
 					-->
                     <label>
-					<input type="checkbox" name="chkPassword" id="chkPassword" /> Admin password for settings and results
+					<input type="checkbox" name="chkPassword" id="chkPassword" /> Parental password for settings page
 					</label>
                     <div data-role="fieldcontain" id="passbox">
                         <label for="pass1">Password:</label>

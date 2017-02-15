@@ -1,17 +1,17 @@
 
         //main
         /*jshint -W083 */
-if (typeof console  != "undefined") 
-    if (typeof console.log != 'undefined')
-        console.olog = console.log;
-    else
-        console.olog = function() {};
-
-console.log = function(message) {
-    console.olog(message);
-    $('#debugDiv').append('<p>' + message + '</p>');
-};
-console.error = console.debug = console.info =  console.log;
+// if (typeof console  != "undefined") 
+    // if (typeof console.log != 'undefined')
+        // console.olog = console.log;
+    // else
+        // console.olog = function() {};
+// 
+// console.log = function(message) {
+    // console.olog(message);
+    // $('#debugDiv').append('<p>' + message + '</p>');
+// };
+// console.error = console.debug = console.info =  console.log;
 
        
 $(document).delegate(".ui-page", "pagebeforeshow", function () {
@@ -823,6 +823,12 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 							app.tempContest.savePhotos = false;
 	                    }
 	                    
+	                    if ($('#chkSocial').is(":checked")) {
+	                        app.tempContest.social = true;
+	                    } else {
+							app.tempContest.social = false;
+	                    }
+	                    
 	                    if ($('#chkSaveVoterPhotos').is(":checked")) {
 	                        app.tempContest.saveVoterPhotos = true;
 	                    } else {
@@ -1260,6 +1266,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
             	var votesText = "";
             	var tieText = "";
             	var written=0;
+            	var shareText="";
             	
             	for (var i=0; i<l; i++) {
             		//for each category
@@ -1317,7 +1324,13 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
             					votesText = "vote";
             				}
             				
-		            		html += "<li id='" + i + "|" + j + "'><a href='#'><img src='" + entry.photo + "'><b>" + placeText + tieText + "</b><br><span class='desc'>" + votes + " " + votesText + nameText + "</a><a href='#' data-imgData='" + entry.b64 + "' data-shareText='" + shareText + "' class='shareResults'></a></li>";
+            				if (app.myContest.social === true) {
+            					shareText = "<a href='#' data-imgData='" + entry.b64 + "' data-shareText='" + shareText + "' class='shareResults'></a>";
+            				} else {
+            					shareText = "";
+            				}
+            				
+		            		html += "<li id='" + i + "|" + j + "'><a href='#'><img src='" + entry.photo + "'><b>" + placeText + tieText + "</b><br><span class='desc'>" + votes + " " + votesText + nameText + "</a>" + shareText + "</li>";
 	            			written ++;
 	            			if (j === 0) {
 	            				app.drawWinnerImage(i, entry, catResults.category.name, app.myContest.name);	
@@ -1577,6 +1590,12 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 		                            $btnResultsShare.attr("data-imgData", img);
 		                            $aResults.attr("title", caption);
 		                            $btnResultsShare.attr("data-imgCaption", caption);
+		                            
+		                            if (app.myContest.social === true) {
+		                            	$btnResultsShare.show();
+		                            } else {
+		                            	$btnResultsShare.hide();
+		                            }
 		                           	
 								});
 							});
@@ -2059,7 +2078,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                	
 	                	if (app.myContest === null) {
 	                		var category = new Category("Best Costume");
-	                		app.myContest = new Contest(getTimestamp(), "", "Dress Up Party", "Princess Pink", true, false, false, false, false, true, [category], false, false, "", false, "");
+	                		app.myContest = new Contest(getTimestamp(), "", "Dress Up Party", "Princess Pink", true, false, false, false, false, true, [category], false, false, "", false, "", false);
 	                		app.addCategories(app.myContest.categories, function() {
 	                    		app.store.addContest(app.myContest, function() {
 		                    		var ts = getTimestamp();
@@ -2125,11 +2144,12 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                		var savePhotos = c.savePhotos;
 	                		var saveVoterPhotos = c.saveVoterPhotos;
 	                		var backgroundImage = c.backgroundImage;
+	                		var social = c.social;
 	                		                              //id, onlineId, name, style, entryAllowNames, entryAllowCaptions, voteShowScore, voteRequireName, voteRequirePhoto, voteAllowComments, categories, isOnline, isPasswordProtected, password
-	                		app.tempContest = new Contest(id, "", name, style, entryAllowNames, entryAllowCaptions, voteShowScore, voteRequireName, voteRequirePhoto, voteAllowComments, categories, isOnline, isPasswordProtected, password, savePhotos, saveVoterPhotos, backgroundImage);
+	                		app.tempContest = new Contest(id, "", name, style, entryAllowNames, entryAllowCaptions, voteShowScore, voteRequireName, voteRequirePhoto, voteAllowComments, categories, isOnline, isPasswordProtected, password, savePhotos, saveVoterPhotos, backgroundImage, social);
 	                	} else {
 	                		var category = new Category("Best Costume");
-	                		app.tempContest = new Contest(getTimestamp(), "", "", "Princess Pink", true, false, false, false, false, true, [category], false, false, "", false, "");
+	                		app.tempContest = new Contest(getTimestamp(), "", "", "Princess Pink", true, false, false, false, false, true, [category], false, false, "", false, "", false);
 	                	}
 	                	
 	                	c = app.tempContest;
@@ -2168,6 +2188,12 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                		$('#chkSavePhotos').attr('checked', true).checkboxradio("refresh");
 	                	} else {
 	                		$('#chkSavePhotos').attr('checked', false).checkboxradio("refresh");
+	                	}
+	                	
+	                	if (c.social === true) {
+	                		$('#chkSocial').attr('checked', true).checkboxradio("refresh");
+	                	} else {
+	                		$('#chkSocial').attr('checked', false).checkboxradio("refresh");
 	                	}
 	                	
 	                	if (c.saveVoterPhotos === true) {

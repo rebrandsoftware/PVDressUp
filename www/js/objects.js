@@ -1,4 +1,4 @@
-function Contest(id, onlineId, name, style, entryAllowNames, entryAllowCaptions, voteShowScore, voteRequireName, voteRequirePhoto, voteAllowComments, categories, isOnline, isPasswordProtected, password, savePhotos, saveVoterPhotos, backgroundImage) {
+function Contest(id, onlineId, name, style, entryAllowNames, entryAllowCaptions, voteShowScore, voteRequireName, voteRequirePhoto, voteAllowComments, categories, isOnline, isPasswordProtected, password, savePhotos, saveVoterPhotos, backgroundImage, social) {
 	this.id = id;
 	this.onlineId = onlineId;
 	this.name = name;
@@ -16,6 +16,7 @@ function Contest(id, onlineId, name, style, entryAllowNames, entryAllowCaptions,
 	this.savePhotos=savePhotos;
 	this.saveVoterPhotos=saveVoterPhotos;
 	this.backgroundImage=backgroundImage;
+	this.social=social;
 }
 
 function ContestEntry(id, photo, name, caption, hidden) {
