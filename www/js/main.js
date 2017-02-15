@@ -1895,14 +1895,14 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                
 	                $('#btnResults').on('click', function() {
 	                	if (app.myContest) {
-	                		if (app.myContest.isPasswordProtected === true) {
-	                			app.passDest = "#results";
-	                			$('#txtPassword').val("");
-	                			changePage('#promptForPassword', {
-		                            transition: 'pop',
-		                            role: 'dialog'
-		                        });
-	                		} else {
+	                		// if (app.myContest.isPasswordProtected === true) {
+	                			// app.passDest = "#results";
+	                			// $('#txtPassword').val("");
+	                			// changePage('#promptForPassword', {
+		                            // transition: 'pop',
+		                            // role: 'dialog'
+		                        // });
+	                		// } else {
 	                			
 	                			app.loadAllCategories(function() {
 			                		app.loadAllEntries(function() {
@@ -1915,7 +1915,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 			                	});
 	                			
 	                		
-	                		}
+	                		//}
 	                	} else {
 	                		Toast.toast("Please configure the contest first");
 	                		changePage("#contest");
