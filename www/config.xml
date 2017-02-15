@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.rebrandsoftware.pvdressup" versionCode="1" version="1.0.0">
+
+    <!-- versionCode is optional and Android only -->
+
+    <preference name="phonegap-version" value="cli-6.5.0" />
+    <preference name="splashScreenDelay" value="3000" />
+    <preference name="fullscreen" value="false" />
+    <preference name="android-installLocation" value="auto" />
+    <preference name="android-minSdkVersion" value="14" />
+    <preference name="android-targetSdkVersion" value="23" />
+    <preference name="orientation" value="portrait" />
+
+    <name>PartyVote: Dress Up</name>
+
+    <description>
+        Dress up, snap a selfie, and vote on your favorite costumes!
+    </description>
+
+    <author href="http://www.rebrandsoftware.com" email="mike@rebrandsoftware.com">
+        Mike Gibson - Rebrand Software, LLC
+    </author>
+
+    <access origin="*" />
+    
+    <!--
+    <feature name="debug-server" required="true">
+       <param name="domain" value="http://172.16.11.103:9090"/>
+       <param name="key" value="I_DRINK_YOUR_MILKSHAKE"/>
+    </feature>
+    -->
+    
+    <!--
+    <feature name="debug-server" required="true">
+       <param name="domain" value="http://10.0.0.160:8080"/>
+       <param name="key" value="31526485"/>
+    </feature>
+    -->
+	
+	<plugin name="cordova-plugin-device" spec="1.0.1" source="npm" />
+	<plugin name="cordova-plugin-camera" />
+    <plugin name="cordova-plugin-file" spec="3.0" source="npm" />
+    <plugin name="cordova-plugin-media" spec="1.0.1" source="npm" />
+    <plugin name="cordova-plugin-inappbrowser" source="npm"/>
+    <plugin name="cordova-plugin-splashscreen" spec="2.1.0" source="npm" />
+    <plugin name="cordova-plugin-appavailability" spec="0.4.2" source="npm" />
+	<plugin spec="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" source="git" />
+    <plugin name="cordova-plugin-whitelist" source="npm" />
+    <plugin name="cordova-plugin-inapppurchase" source="npm" />
+    <plugin spec="https://github.com/nleclerc/cordova-plugin-ios-disableshaketoedit.git" source="git" />
+    
+    <!-- AdMob and Mediation -->
+    <plugin name="cordova-plugin-admob-free" source="npm" />
+    <plugin spec="https://github.com/becvert/cordova-plugin-admob-mediation-adbuddiz.git" source="git" />
+    <plugin spec="https://github.com/becvert/cordova-plugin-admob-mediation-facebook.git" source="git" />
+    <plugin spec="https://github.com/warcry2000/cordova-plugin-admob-mediation-adcolony.git" source="git" />
+    <plugin spec="https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git" source="git" />
+    
+	<allow-navigation href="http://*/*" />
+	<allow-intent href="https://*/*" />
+
+	<gap:config-file platform="ios" parent="UIStatusBarHidden">
+	    <true/>
+	</gap:config-file>
+	
+	<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
+	    <false/>
+	</gap:config-file>
+	
+	<gap:config-file platform="ios" parent="NSCalendarsUsageDescription">
+        <string>Adds interactivity to some advertisements</string>
+	</gap:config-file>
+	
+	<gap:config-file platform="ios" parent="NSPhotoLibraryUsageDescription">
+        <string>Allows you to save pictures to your camera roll</string>
+	</gap:config-file>
+	
+	<feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" onload="true" />
+    </feature>
+
+    <icon src="icon.png" />
+
+    <!-- Android -->
+    <icon src="icons/android/ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
+    <icon src="icons/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
+    <icon src="icons/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
+    <icon src="icons/android/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
+    <icon src="icons/android/xxhdpi.png" gap:platform="android" gap:qualifier="xxhdpi" />
+    <icon src="icons/android/xxxhdpi.png" gap:platform="android" gap:qualifier="xxxhdpi" />
+
+    <!-- iPhone / iPod Touch  -->
+    <icon src="icons/ios/icon-60.png" gap:platform="ios" width="60" height="60" />
+    <icon src="icons/ios/icon-60_at_2x.png" gap:platform="ios" width="120" height="120" />
+
+    <!-- iPad -->
+    <icon src="icons/ios/icon-76.png" gap:platform="ios" width="76" height="76" />
+    <icon src="icons/ios/icon-76_at_2x.png" gap:platform="ios" width="152" height="152" />
+
+    <!-- Settings Icon -->
+    <icon src="icons/ios/icon-small.png" gap:platform="ios" width="29" height="29" />
+    <icon src="icons/ios/icon-small_at_2x.png" gap:platform="ios" width="58" height="58" />
+
+    <!-- Spotlight Icon -->
+    <icon src="icons/ios/icon-40.png" gap:platform="ios" width="40" height="40" />
+    <icon src="icons/ios/icon-40_at_2x.png" gap:platform="ios" width="80" height="80" />
+
+    <!-- iPhone / iPod Touch -->
+    <icon src="icons/ios/icon-57.png" gap:platform="ios" width="57" height="57" />
+    <icon src="icons/ios/icon_at_2x.png" gap:platform="ios" width="114" height="114" />
+
+    <!-- iPad -->
+    <icon src="icons/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
+    <icon src="icons/ios/icon-72_at_2x.png" gap:platform="ios" width="144" height="144" />
+
+    <!-- iPhone Spotlight and Settings Icon -->
+    <icon src="icons/ios/icon-small.png" gap:platform="ios" width="29" height="29" />
+    <icon src="icons/ios/icon-small_at_2x.png" gap:platform="ios" width="58" height="58" />
+
+    <!-- iPad Spotlight and Settings Icon -->
+    <icon src="icons/ios/icon-50.png" gap:platform="ios" width="50" height="50" />
+    <icon src="icons/ios/icon-50_at_2x.png" gap:platform="ios" width="100" height="100" />
+
+    <icon src="icons/winphone/win-icon.png" gap:platform="winphone" />
+    <icon src="icons/winphone/win-tileicon.png" gap:platform="winphone" gap:role="background" />
+
+    <!-- iPhone and iPod touch -->
+    <gap:splash src="splash/ios/default.png" gap:platform="ios" width="320" height="480" />
+    <gap:splash src="splash/ios/default_at_2x.png" gap:platform="ios" width="640" height="960" />
+
+    <!-- iPhone 5 / iPod Touch (5th Generation) -->
+    <gap:splash src="splash/ios/default-568h_at_2x.png" gap:platform="ios" width="640" height="1136" />
+
+    <!-- iPad -->
+    <gap:splash src="splash/ios/default-portrait.png" gap:platform="ios" width="768" height="1024" />
+    <gap:splash src="splash/ios/default-landscape.png" gap:platform="ios" width="1024" height="768" />
+
+    <!-- Retina iPad -->
+    <gap:splash src="splash/ios/default-portrait_at_2x.png" gap:platform="ios" width="1536" height="2048" />
+    <gap:splash src="splash/ios/default-landscape_at_2x.png" gap:platform="ios" width="2048" height="1536" />
+
+    <gap:splash src="splash/android/drawable-hdpi/splash.9.png" gap:platform="android" gap:density="hdpi" />
+    <gap:splash src="splash/android/drawable-mdpi/splash.9.png" gap:platform="android" gap:density="mdpi" />
+	<gap:splash src="splash/android/drawable-xhdpi/splash.9.png" gap:platform="android" gap:density="xhdpi" />
+    <gap:splash src="splash/android/drawable-xxhdpi/splash.9.png" gap:platform="android" gap:density="xxhdpi" />
+
+</widget>

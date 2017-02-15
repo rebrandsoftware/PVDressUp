@@ -1,0 +1,44 @@
+{ 
+    "launch_path": "/index.html",
+    "installs_allowed_from": [
+        "https://marketplace.firefox.com"
+    ],
+    "version":"1.0.0",
+    "name":"PartyVote: Dress Up",
+    "description": "Dress up, snap a selfie, and vote on your favorite costume!",
+    "pkgName":"com.rebrandsoftware.pvdressup",
+    "icons": {
+        "16": "/icons/firefoxos/016.png",
+        "32": "/icons/firefoxos/032.png",
+        "48": "/icons/firefoxos/048.png",
+        "60": "/icons/firefoxos/060.png",
+        "128":"/icons/firefoxos/128.png",
+        "512":"/icons/firefoxos/512.png"
+    },
+    "developer": {
+    "name": "Rebrand Software, LLC",
+    "url": "http://www.rebrandsoftware.com"
+    },
+    "chrome": { "navigation": false },
+    "default_locale": "en",
+    "fullscreen": "true",
+    "permissions": {
+      "browser": {
+            "description": "Enables the app to implement a browser in an iframe."
+        },
+      "camera": {
+        "description":"Required to take costume"
+      },
+      "device-storage:pictures":{ 
+        "access": "readwrite",
+        "description":"Required to save costume photos"
+      },
+      "storage": {
+        "description":"Required to store data"
+      },
+      "systemXHR": {
+        "description":"Required to host and connect to online contests"
+      } 
+    },
+    "type": "privileged"
+}

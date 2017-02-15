@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        PartyVote: Dress Up
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+	<!--
+	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
+   -->
+    <!-- start jquery mobile -->
+    <link rel="stylesheet" href="themes/DressUp.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+
+    <link rel="stylesheet" href="lib/jqm/jquery.mobile.structure-1.4.5.min.css" />
+    <script type="text/javascript" src="lib/jq/jquery-2.1.1.min.js">
+    </script>
+
+    
+    <script>
+        $(document).bind("mobileinit", function() {
+            $.mobile.hashListeningEnabled = false;
+        });
+    </script>
+    
+    <script type="text/javascript" src="lib/jqm/jquery.mobile-1.4.5.min.js"></script>
+
+    <!-- pnotify stylesheet -->
+    <link href="lib/pnotify/pnotify.custom.min.css" media="all" rel="stylesheet" type="text/css" />
+
+    <!-- start phonegap  -->
+    <script type="text/javascript" src="phonegap.js">
+    </script>
+    <!-- end phonegap  -->
+
+
+    <style type="text/css" media="screen">
+        input[type="hidden"] {
+            visibility: hidden;
+        }
+        
+        .iconLeft a {
+            padding-left: 2.5em !important;
+            padding-right: 1em !important;
+        }
+        
+        .iconLeft a:after {
+            right: auto;
+            left: 9px;
+        }
+        
+        .rect-thumb {
+            width: 320px;
+            height: 240px;
+        }
+        
+        .ui-simpledialog-controls {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        .ui-simpledialog-subtitle {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        .ui-simpledialog-withpadding {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        .ui-title {
+            margin: 0.6em 10% 0.8em !important;
+        }
+        
+        .ui-icon-myapp-half:after {
+            background-image: url("img/ui/app-icon-half.png");
+        }
+        
+        .ui-icon-myapp-5:after {
+            background-image: url("img/ui/app-icon-5.png");
+        }
+        
+        .ui-icon-myapp-10:after {
+            background-image: url("img/ui/app-icon-10.png");
+        }
+        
+        .ui-icon-myapp-50:after {
+            background-image: url("img/ui/app-icon-50.png");
+        }
+        
+        .ui-icon-myapp-100:after {
+            background-image: url("img/ui/app-icon-100.png");
+        }
+        
+        .ui-icon-myapp-500:after {
+            background-image: url("img/ui/app-icon-500.png");
+        }
+        
+        .ui-icon-myapp-1000:after {
+            background-image: url("img/ui/app-icon-1000.png");
+        }
+        
+        .ui-icon-myapp-5000:after {
+            background-image: url("img/ui/app-icon-5000.png");
+        }
+        
+        .ui-icon-myapp-10000:after {
+            background-image: url("img/ui/app-icon-10000.png");
+        }
+        
+        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+            .ui-icon-myapp-half:after {
+                background-image: url("img/ui/app-icon-half@2x.png");
+                background-size: 18px 18px;
+            }
+            .ui-icon-myapp-5:after {
+                background-image: url("img/ui/app-icon-5@2x.png");
+                background-size: 18px 18px;
+            }
+            .ui-icon-myapp-10:after {
+                background-image: url("img/ui/app-icon-10@2x.png");
+                background-size: 18px 18px;
+            }
+            .ui-icon-myapp-50:after {
+                background-image: url("img/ui/app-icon-50@2x.png");
+                background-size: 18px 18px;
+            }
+            .ui-icon-myapp-100:after {
+                background-image: url("img/ui/app-icon-100@2x.png");
+                background-size: 18px 18px;
+            }
+            .ui-icon-myapp-500:after {
+                background-image: url("img/ui/app-icon-500@2x.png");
+                background-size: 18px 18px;
+            }
+            .ui-icon-myapp-1000:after {
+                background-image: url("img/ui/app-icon-1000@2x.png");
+                background-size: 18px 18px;
+            }
+            .ui-icon-myapp-5000:after {
+                background-image: url("img/ui/app-icon-5000@2x.png");
+            }
+            .ui-icon-myapp-10000:after {
+                background-image: url("img/ui/app-icon-10000@2x.png");
+            }
+        }
+   
+   .ui-page { 
+    background:#FFFFFF;
+}
+   	
+        .desc {
+            font-size: 75%;
+            white-space: normal;
+            color: black;
+        }
+        
+        .descWhite {
+            font-size: 75%;
+            white-space: normal;
+            color: white;
+            -webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+        }
+        
+        .head {
+            font-size: 100%;
+            font-weight: bold;
+            white-space: normal;
+            color: black;
+        }
+        
+        .headWhite {
+            font-size: 100%;
+            font-weight: bold;
+            white-space: normal;
+            color: white;
+            -webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+        }
+        
+        
+        
+        
+        @media (min-width: 40em) {
+            /* Show the table header rows and set all cells to display: table-cell */
+            .my-custom-breakpoint td,
+            .my-custom-breakpoint th,
+            .my-custom-breakpoint tbody th,
+            .my-custom-breakpoint tbody td,
+            .my-custom-breakpoint thead td,
+            .my-custom-breakpoint thead th {
+                display: table-cell;
+                margin: 0;
+            }
+            /* Hide the labels in each cell */
+            .my-custom-breakpoint td .ui-table-cell-label,
+            .my-custom-breakpoint th .ui-table-cell-label {
+                display: none;
+            }
+        }
+        
+        .ui-filter-inset {
+            margin-top: 0;
+        }
+        
+        .ui-btn-pressed {
+            background: black;
+            font-weight: bold;
+            color: #111;
+            text-shadow: 0 1px 0 white;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF5BA), to(#FBDD52));
+            background-image: -webkit-linear-gradient(#FFF5BA, #FBDD52);
+            background-image: -moz-linear-gradient(#FFF5BA, #FBDD52);
+            background-image: -ms-linear-gradient(#FFF5BA, #FBDD52);
+            background-image: -o-linear-gradient(#FFF5BA, #FBDD52);
+            background-image: linear-gradient(#FFF5BA, #FBDD52);
+        }
+        
+        
+        
+    </style>
+
+</head>
+
+<body>
+	
+    <!-- Home 
+    <div data-role="page" id="home">
+        <div data-theme="a" data-role="header">
+            <h3>
+          Costume Contest
+        </h3>
+        </div>
+        <div class="ui-content">
+            <div class="ui-field-contain">
+                <a data-role="button" data-theme="d" href="#host" data-icon="home" data-iconpos="left" data-transition="pop">
+		          Host a Contest
+		        </a>
+                <a data-role="button" data-theme="d" href="#join" data-icon="cloud" data-iconpos="left" data-transition="pop">
+		          Join a Contest
+		        </a>
+		        
+			</div>
+        </div>
+    </div>
+    
+    <div data-role="page" id="join">
+        <div data-theme="a" data-role="header">
+            <h3>
+          Join a Contest
+        </h3>
+        </div>
+        <div class="ui-content">
+            <div class="ui-field-contain">
+                Enter the 4-digit code of the contest you want to join
+			</div>
+        </div>
+    </div>
+    
+   -->
+    
+    <div data-role="page" id="home">
+        <div data-theme="a" data-role="header">
+        
+            <h3 id="contestName">
+          PartyVote: Dress Up
+        </h3>
+        </div>
+        <div class="ui-content">
+        	
+        	<div id="info" class="ui-body ui-body-a ui-corner-all"><h3>Click Settings to create a contest</h3></div>
+        	<div id="buttons" data-role="ui-field-contain">
+            <a data-role="button" id="btnEnter" data-theme="d" href="#" data-icon="user" data-iconpos="left" data-transition="pop">
+		          Enter
+		        </a>
+                <a data-role="button" id="btnVote" data-theme="d" href="#" data-icon="check" data-iconpos="left" data-transition="pop">
+		          Vote
+		        </a>
+		    </div>
+		    <BR>
+		    <div id="resultsButtons" data-role="ui-field-contain">
+		        <a data-role="button" id="btnResults" data-theme="c" href="#" data-icon="grid" data-iconpos="left" data-transition="pop">
+		          Results
+		        </a>
+		    </div>
+		    <!--
+		    <div id="debugDiv"></div>
+		    -->
+        </div>
+        
+        <div data-role="footer" class="ui-bar" data-position="fixed" data-tap-toggle="false" data-theme="a">
+        	<a data-role="button" id="popupSocial" data-theme="a" href="#" data-icon="comment"  data-iconpos="left" style="float: left;">
+	          Social
+	        </a>
+            <a href="#" id="btnSettings" data-role="button" data-icon="gear" data-theme="a" style="float: right; margin-right: 30px;">Settings</a>
+        </div>
+    </div>
+
+	<div data-role="page" id="enter">
+        <div data-theme="a" data-role="header">
+        	<a data-role="button" data-theme="e" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left android-back backToHome">
+            Cancel
+        </a>
+            <h3>
+          Enter
+        </h3>
+        </div>
+        <div class="ui-content">
+        	<div class="ui-body ui-body-a ui-corner-all">
+        	 <form id="frmTakePhoto" data-ajax="false" onsubmit="app.submitEntry();return false;">
+	            
+				<div id="divEntryName" class="ui-field-contain">
+	                <label for="txtPhotoName">
+						Name:
+					</label>
+	                <input type="text" id="txtPhotoName" placeholder="Your name" class='entrySubmit' />
+				</div>
+				<div id="divEntryCaption" class="ui-field-contain;entrySubmit">
+					<label for="txtPhotoCaption">
+						Caption:
+					</label>
+	                 <input type="text" id="txtPhotoCaption" placeholder="Costume name or description" class='entrySubmit' />
+				</div>
+				<div class="ui-field-contain">
+	                <a id="btnTakeAPicture" data-role="button" data-theme="d" href="#" data-icon="camera" data-iconpos="left">
+			          Take a picture
+			        </a>
+				</div>
+				<div data-role="fieldcontain" id="photoContainer" style="text-align: center;">
+	            </div>
+			</form>
+		  </div>
+        </div>
+        <div data-role="footer" class="ui-bar" data-position="fixed" data-tap-toggle="false">
+        		
+            <a href="#" id="btnSaveEntry" data-role="button" data-icon="check" data-theme="d" style="float: right; margin-right: 30px;">Enter the Contest!</a>
+        </div>
+    </div>
+    
+    <div data-role="page" id="vote">
+        <div data-theme="a" data-role="header">
+        	<a data-role="button" data-theme="e" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left android-back backToHome">
+            Cancel
+        </a>
+            <h3 id="voteCaption">
+          CATEGORY
+        </h3>
+        </div>
+        <div class="ui-content">
+        	<div class="ui-field-contain" id="divGalleryNoneFound">
+                <div id="noEntriesYet" class="ui-body ui-body-a ui-corner-all" style="display:none"><h3>Add an entry to begin voting</h3></div>
+            </div>
+            
+            <div class="ui-field-contain" id="galleryContainer">
+                <!--
+            <a href="#" class="swipebox" rel="gallery" title="Session Photo" id="aGallery0"><img src="/" id="imgGallery0" height="240" width="320" style="" alt=""></a>
+            -->
+            </div>
+
+            <div id="galleryContainerHidden">
+
+            </div>
+        </div>
+
+    </div>
+    
+    <div data-role="page" id="category">
+        <div data-theme="a" data-role="header">
+        	<a data-role="button" data-theme="e" data-icon="home" data-iconpos="left" class="ui-btn-left android-back backToHome">
+            Home
+        </a>
+            <h3>
+          Choose a Category
+        </h3>
+        </div>
+        <div class="ui-content">
+        	<ul id="lvVoteCategories" data-role="listview" data-inset="true" data-divider-theme="b">
+                <li data-role="list-divider">Categories</li>
+                <li>There are no categories for this contest</li>
+            </ul>
+            
+        </div>
+			
+    </div>
+    
+    
+    
+    <div data-role="page" id="categories">
+        <div data-theme="a" data-role="header">
+        	<a data-role="button" data-theme="e" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left android-back backToEnter">
+            Cancel
+        </a>
+            <h3 id="categoryCaption">
+          Choose a Category
+          	</h3>
+        </div>
+        <div class="ui-content">
+            <ul id="lvCategories" data-role="listview" data-inset="true" data-divider-theme="b">
+                <li data-role="list-divider">Categories</li>
+                <li>There are no categories yet</li>
+            </ul>
+        </div>
+
+    </div>
+    
+    <div data-role="page" id="viewVotes">
+        <div data-theme="a" data-role="header">
+        	<a data-role="button" data-theme="e" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left android-back backToSettings">
+            Back
+        </a>
+            <h3>
+          Manage Votes
+          	</h3>
+        </div>
+        <div class="ui-content">
+            <ul id="lvManageVotes" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="delete">
+                <li data-role="list-divider">Votes</li>
+                <li>There are no votes yet</li>
+            </ul>
+        </div>
+
+    </div>
+    
+    <div data-role="page" id="viewEntries">
+        <div data-theme="a" data-role="header">
+        	<a data-role="button" data-theme="e" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left android-back backToSettings">
+            Back
+        </a>
+            <h3>
+          Manage Entries
+          	</h3>
+        </div>
+        <div class="ui-content">
+            <ul id="lvManageEntries" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="delete">
+                <li data-role="list-divider">Entries</li>
+                <li>There are no entries yet</li>
+            </ul>
+        </div>
+
+    </div>
+    
+    <div data-role="page" id="inAppPurchase">
+        <div data-theme="a" data-role="header">
+        	<a data-role="button" data-theme="e" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left android-back backToSettings">
+            Back
+        </a>
+            <h3>
+          Available Upgrades
+          	</h3>
+        </div>
+        <div class="ui-content">
+            <ul id="productUL" data-role="listview" data-inset="true" data-divider-theme="b">
+                
+            </ul>
+        </div>
+
+    </div>
+
+	<div data-role="page" id="results">
+        <div data-theme="a" data-role="header">
+        	<a data-role="button" data-theme="e" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left android-back" id="btnBackToHomeFromResults">
+            Back
+        </a>
+            <h3>
+          Results!
+          	</h3>
+        </div>
+        
+        <div class="ui-content">
+        	<div id="noResultsYet" class="ui-body ui-body-a ui-corner-all" style="display:none"><h3>Vote on an entry to see the results</h3></div>
+        	
+        	
+        	
+        	<div data-role="ui-field-contain">
+	        	<div class="ui-body ui-body-a ui-corner-all resultsDiv" id="resultsCategory0">
+	        		<div id="divHiddenCanvas0" class="canvasContainer">
+	        			<canvas width="1" height="1" id="resultsCanvas0" class="resultsImage"></canvas>
+	        			<canvas width="1" height="1" id="resultsCanvasLowRes0" class="resultsImage"></canvas>
+	        		</div>
+	        		<div id="resultsDiv0" style="text-align: center;">
+	        				<h3 id='resultsTitle0'>Category</h3>
+	        			    <img src="/" id="resultsImage0" width="1" height="1" alt="gallery" />
+		                <a data-role="button" id="btnResultsShare0" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
+				          Share
+				        </a>
+			            <ul id="lvResults0" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+			        </div>		
+	        	</div>
+        	</div>
+        	<BR>
+        	<div data-role="ui-field-contain">
+	        	<div class="ui-body ui-body-a ui-corner-all resultsDiv" id="resultsCategory1">
+	        		<div id="divHiddenCanvas1" class="canvasContainer">
+	        			<canvas width="1" height="1" id="resultsCanvas1" class="resultsImage"></canvas>
+	        			<canvas width="1" height="1" id="resultsCanvasLowRes1" class="resultsImage"></canvas>
+	        		</div>
+	        		<div id="resultsDiv1" style="text-align: center;">
+	        				<h3 id='resultsTitle1'>Category</h3>
+	        			    <img src="/" id="resultsImage1" width="1" height="1" alt="gallery" />
+		                <a data-role="button" id="btnResultsShare1" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
+				          Share
+				        </a>
+			            <ul id="lvResults1" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+			        </div>		
+	        	</div>
+        	</div>
+        	<BR>
+        		<div data-role="ui-field-contain">
+	        	<div class="ui-body ui-body-a ui-corner-all resultsDiv" id="resultsCategory2">
+	        		<div id="divHiddenCanvas2" class="canvasContainer">
+	        			<canvas width="1" height="1" id="resultsCanvas2" class="resultsImage"></canvas>
+	        			<canvas width="1" height="1" id="resultsCanvasLowRes2" class="resultsImage"></canvas>
+	        		</div>
+	        		<div id="resultsDiv2" style="text-align: center;">
+	        				<h3 id='resultsTitle2'>Category</h3>
+	        			    <img src="/" id="resultsImage2" width="1" height="1" alt="gallery" />
+		                <a data-role="button" id="btnResultsShare2" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
+				          Share
+				        </a>
+			            <ul id="lvResults2" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+			        </div>		
+	        	</div>
+        	</div>
+        	<BR>
+        		<div data-role="ui-field-contain">
+	        	<div class="ui-body ui-body-a ui-corner-all resultsDiv" id="resultsCategory3">
+	        		<div id="divHiddenCanvas3" class="canvasContainer">
+	        			<canvas width="1" height="1" id="resultsCanvas3" class="resultsImage"></canvas>
+	        			<canvas width="1" height="1" id="resultsCanvasLowRes3" class="resultsImage"></canvas>
+	        		</div>
+	        		<div id="resultsDiv3" style="text-align: center;">
+	        				<h3 id='resultsTitle3'>Category</h3>
+	        			    <img src="/" id="resultsImage3" width="1" height="1" alt="gallery" />
+		                <a data-role="button" id="btnResultsShare3" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
+				          Share
+				        </a>
+			            <ul id="lvResults3" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+			        </div>		
+	        	</div>
+        	</div>
+        	<BR>
+        		<div data-role="ui-field-contain">
+	        	<div class="ui-body ui-body-a ui-corner-all resultsDiv" id="resultsCategory4">
+	        		<div id="divHiddenCanvas4" class="canvasContainer">
+	        			<canvas width="1" height="1" id="resultsCanvas4" class="resultsImage"></canvas>
+	        			<canvas width="1" height="1" id="resultsCanvasLowRes4" class="resultsImage"></canvas>
+	        		</div>
+	        		<div id="resultsDiv4" style="text-align: center;">
+	        				<h3 id='resultsTitle4'>Category</h3>
+	        			    <img src="/" id="resultsImage4" width="1" height="1" alt="gallery" />
+		                <a data-role="button" id="btnResultsShare4" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
+				          Share
+				        </a>
+			            <ul id="lvResults4" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+			        </div>		
+	        	</div>
+        	</div>
+        	<BR>
+        		<div data-role="ui-field-contain">
+	        	<div class="ui-body ui-body-a ui-corner-all resultsDiv" id="resultsCategory5">
+	        		<div id="divHiddenCanvas5" class="canvasContainer">
+	        			<canvas width="1" height="1" id="resultsCanvas5" class="resultsImage"></canvas>
+	        			<canvas width="1" height="1" id="resultsCanvasLowRes5" class="resultsImage"></canvas>
+	        		</div>
+	        		<div id="resultsDiv5" style="text-align: center;">
+	        				<h3 id='resultsTitle5'>Category</h3>
+	        			    <img src="/" id="resultsImage5" width="1" height="1" alt="gallery" />
+		                <a data-role="button" id="btnResultsShare5" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
+				          Share
+				        </a>
+			            <ul id="lvResults5" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+			        </div>		
+	        	</div>
+        	</div>
+        	<BR>
+        		<div data-role="ui-field-contain">
+	        	<div class="ui-body ui-body-a ui-corner-all resultsDiv" id="resultsCategory6">
+	        		<div id="divHiddenCanvas6" class="canvasContainer">
+	        			<canvas width="1" height="1" id="resultsCanvas6" class="resultsImage"></canvas>
+	        			<canvas width="1" height="1" id="resultsCanvasLowRes6" class="resultsImage"></canvas>
+	        		</div>
+	        		<div id="resultsDiv6" style="text-align: center;">
+	        				<h3 id='resultsTitle6'>Category</h3>
+	        			    <img src="/" id="resultsImage6" width="1" height="1" alt="gallery" />
+		                <a data-role="button" id="btnResultsShare6" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
+				          Share
+				        </a>
+			            <ul id="lvResults6" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+			        </div>		
+	        	</div>
+        	</div>
+        	<BR>
+        		<div data-role="ui-field-contain">
+	        	<div class="ui-body ui-body-a ui-corner-all resultsDiv" id="resultsCategory7">
+	        		<div id="divHiddenCanvas7" class="canvasContainer">
+	        			<canvas width="1" height="1" id="resultsCanvas7" class="resultsImage"></canvas>
+	        			<canvas width="1" height="1" id="resultsCanvasLowRes7" class="resultsImage"></canvas>
+	        		</div>
+	        		<div id="resultsDiv7" style="text-align: center;">
+	        				<h3 id='resultsTitle7'>Category</h3>
+	        			    <img src="/" id="resultsImage7" width="1" height="1" alt="gallery" />
+		                <a data-role="button" id="btnResultsShare7" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
+				          Share
+				        </a>
+			            <ul id="lvResults7" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+			        </div>		
+	        	</div>
+        	</div>
+        	<BR>
+        		<div data-role="ui-field-contain">
+	        	<div class="ui-body ui-body-a ui-corner-all resultsDiv" id="resultsCategory8">
+	        		<div id="divHiddenCanvas8" class="canvasContainer">
+	        			<canvas width="1" height="1" id="resultsCanvas8" class="resultsImage"></canvas>
+	        			<canvas width="1" height="1" id="resultsCanvasLowRes8" class="resultsImage"></canvas>
+	        		</div>
+	        		<div id="resultsDiv8" style="text-align: center;">
+	        				<h3 id='resultsTitle8'>Category</h3>
+	        			    <img src="/" id="resultsImage8" width="1" height="1" alt="gallery" />
+		                <a data-role="button" id="btnResultsShare8" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
+				          Share
+				        </a>
+			            <ul id="lvResults8" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+			        </div>		
+	        	</div>
+        	</div>
+        	<BR>
+        		<div data-role="ui-field-contain">
+	        	<div class="ui-body ui-body-a ui-corner-all resultsDiv" id="resultsCategory9">
+	        		<div id="divHiddenCanvas9" class="canvasContainer">
+	        			<canvas width="1" height="1" id="resultsCanvas9" class="resultsImage"></canvas>
+	        			<canvas width="1" height="1" id="resultsCanvasLowRes9" class="resultsImage"></canvas>
+	        		</div>
+	        		<div id="resultsDiv9" style="text-align: center;">
+	        				<h3 id='resultsTitle9'>Category</h3>
+	        			    <img src="/" id="resultsImage9" width="1" height="1" alt="gallery" />
+		                <a data-role="button" id="btnResultsShare9" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
+				          Share
+				        </a>
+			            <ul id="lvResults9" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+			        </div>		
+	        	</div>
+        	</div>
+        	<BR>
+        		<div data-role="ui-field-contain">
+	        	<div class="ui-body ui-body-a ui-corner-all resultsDiv" id="resultsCategory10">
+	        		<div id="divHiddenCanvas10" class="canvasContainer">
+	        			<canvas width="1" height="1" id="resultsCanvas10" class="resultsImage"></canvas>
+	        			<canvas width="1" height="1" id="resultsCanvasLowRes10" class="resultsImage"></canvas>
+	        		</div>
+	        		<div id="resultsDiv10" style="text-align: center;">
+	        				<h3 id='resultsTitle10'>Category</h3>
+	        			    <img src="/" id="resultsImage10" width="1" height="1" alt="gallery" />
+		                <a data-role="button" id="btnResultsShare10" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
+				          Share
+				        </a>
+			            <ul id="lvResults10" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+			        </div>		
+	        	</div>
+        	</div>
+        	<BR>
+        		<div data-role="ui-field-contain">
+	        	<div class="ui-body ui-body-a ui-corner-all resultsDiv" id="resultsCategory11">
+	        		<div id="divHiddenCanvas11" class="canvasContainer">
+	        			<canvas width="1" height="1" id="resultsCanvas11" class="resultsImage"></canvas>
+	        			<canvas width="1" height="1" id="resultsCanvasLowRes11" class="resultsImage"></canvas>
+	        		</div>
+	        		<div id="resultsDiv11" style="text-align: center;">
+	        				<h3 id='resultsTitle11'>Category</h3>
+	        			    <img src="/" id="resultsImage11" width="1" height="1" alt="gallery" />
+		                <a data-role="button" id="btnResultsShare11" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
+				          Share
+				        </a>
+			            <ul id="lvResults11" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+			        </div>		
+	        	</div>
+        	</div>
+        	<BR>
+        	
+        </div>
+        
+        
+
+    </div>
+
+	<div data-role="page" id="settings">
+        <div data-theme="a" data-role="header">
+        	<a data-role="button" data-theme="e" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left android-back backToHome">
+            Back
+        </a>
+            <h3 id="settingsCaption">
+          Settings
+          	</h3>
+        </div>
+        <div class="ui-content">
+            
+            <a data-role="button" id="btnNewContest" data-theme="a" href="#" data-icon="plus" data-iconpos="left" data-transition="pop">
+		          New Contest
+		        </a>
+                <a data-role="button" id="btnEditContest" data-theme="a" href="#" data-icon="edit" data-iconpos="left" data-transition="pop">
+		          Edit Contest
+		        </a>
+		         <a data-role="button" data-theme="a" href="#viewEntries" data-icon="bullets" data-iconpos="left" data-transition="pop">
+		          Manage Entries
+		        </a>
+		    <a data-role="button" data-theme="a" href="#viewVotes" data-icon="bullets" data-iconpos="left" data-transition="pop">
+		          Manage Votes
+		        </a>
+                
+                
+                <div class="ui-body ui-body-a ui-corner-all" id="divAskToUpgrade">
+                <p>
+                    If you are enjoying PartyVote please support it by upgrading to the ad-free version!
+                </p>
+                <a data-role="button" data-theme="d" data-icon="shop" class="btnGoToStore">
+	            Upgrade Now
+	          </a>
+	          
+	          <a data-role="button" data-theme="d" data-icon="eye" class="btnPlayVideo">
+	            1 Hour Ad-free: Watch a Video
+	          </a>
+              
+            </div>
+        </div>
+    </div>
+    
+<div data-role="page" id="contest">
+    <div data-theme="a" data-role="header">
+        <a data-role="button" data-theme="e" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left android-back backToSettings">
+		Back
+		</a>
+        <h3 id="contestCaption">
+            Contest Settings
+        </h3>
+    </div>
+    <div class="ui-content">
+        <form id="frmContestSettings1" data-ajax="false" onsubmit="app.submitContest();return false;">
+        	<div class="ui-body ui-body-a ui-corner-all">
+            	<h3>Name and Style</h3>
+            	<div data-role="fieldcontain">
+                <label for="txtContestName">Contest Name:</label>
+                <input type="text" name="txtContestName" id="txtContestName" class="contestSubmit">
+                            
+				</div>
+				<div data-role="fieldcontain">
+					<label for="selStyle">
+					Style:
+					</label>
+                <select id="selStyle" name="selStyle" class="contestSubmit">
+                	<option id="Princess Pink">Princess Pink</option>
+					<option id="Elegant Blue">Elegant Blue</option>
+					<option id="Superhero">Superhero</option>
+					<option id="CRAZY">CRAZY</option>
+					</select>
+				</div>
+				<div data-role="fieldcontain">
+					<label>
+					Color Preview:
+					</label>
+					<div data-role="controlgroup" data-type='horizontal' id="colorButtons">
+					<a id="btnColor1" href="#" data-role="button">&nbsp;</a>
+					<a id="btnColor2" href="#" data-role="button">&nbsp;</a>
+					<a id="btnColor3" href="#" data-role="button">&nbsp;</a>
+					<a id="btnColor4" href="#" data-role="button">&nbsp;</a>
+					<a id="btnColor5" href="#" data-role="button">&nbsp;</a>
+					</div>
+				</div>
+				<div data-role="fieldcontain">
+					<label for="txtBackgroundImage">Background URL:</label>
+                <input type="text" name="txtBackgroundImage" id="txtBackgroundImage" class="contestSubmit">
+					
+				</div>
+					
+            </div>
+            
+            
+
+            <div data-role="fieldcontain">
+                <div class="ui-body ui-body-a ui-corner-all">
+                    <h3>Options</h3>
+                    <label>
+					<input type="checkbox" name="chkEntryName" id="chkEntryName" /> Allow entry name
+					</label>
+					<label>
+					<input type="checkbox" name="chkEntryCaption" id="chkEntryCaption" /> Allow entry caption
+					</label>
+					<label>
+					<input type="checkbox" name="chkSavePhotos" id="chkSavePhotos" /> Save photos to device
+					</label>
+                    <label>
+					    <input type="checkbox" name="chkVoterName" id="chkVoterName" /> Require voter name
+					</label>
+					<!--
+					<label>
+					    <input type="checkbox" name="chkVoterPhoto" id="chkVoterPhoto" /> Require voter photo
+					</label>
+					<div id="divSaveVoterPhotos">
+					<label>
+					<input type="checkbox" name="chkSaveVoterPhotos" id="chkSaveVoterPhotos" /> Save voter photos to camera roll
+					</label>
+					</div>
+					-->
+                    <label>
+					<input type="checkbox" name="chkPassword" id="chkPassword" /> Admin password for settings and results
+					</label>
+                    <div data-role="fieldcontain" id="passbox">
+                        <label for="pass1">Password:</label>
+                        <input type="password" name="pass1" id="pass1" class="contestSubmit">
+                        <label for="pass2">Confirm:</label>
+                        <input type="password" name="pass2" id="pass2" class="contestSubmit">
+                    </div>
+                   
+                </div>
+            </div>
+        </form>
+        <form id="frmContestCategories" data-ajax="false" onsubmit="app.submitCategory();return false;">
+
+            <div data-role="fieldcontain">
+                <div class="ui-body ui-body-a ui-corner-all">
+                    <div data-role="fieldcontain">
+                        <ul id="lvContestCategories" data-role="listview" data-split-icon="delete" data-inset="true">
+                            <li data-role="list-divider">Categories</li>
+                            <li>Add one or more categories below</li>
+                        </ul>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="txtCategoryAdd">
+						New Category:
+						</label>
+                        <input name="txtCategoryAdd" id="txtCategoryAdd" placeholder="Type or choose from list" value="" type="text" data-mini="true">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="selCatAdd">
+			</label>
+                        <select id="selCatAdd" name="selCatAdd" data-mini="true">
+			<option value="Best Costume">Best Costume</option>
+			<option value="Best Group Costume">Best Group Costume</option>
+			<option value="Funniest Costume">Funniest Costume</option>
+			<option value="Girliest Costume">Girliest Costume</option>
+			<option value="Laziest Costume">Laziest Costume</option>
+			<option value="Most Original Costume">Most Original Costume</option>
+			<option value="Most Creative Costume">Most Creative Costume</option>
+			<option value="Manliest Costume">Manliest Costume</option>
+			<option value="Scariest Costume">Scariest Costume</option>
+			<option value="Silliest Costume">Silliest Costume</option>
+			</select>
+                    </div>
+
+                    <div data-role="fieldcontain">
+
+                        <input type="submit" value="Add Category" data-icon="arrow-u" data-theme="d">
+
+                    </div>
+                    
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+    <div data-role="footer" class="ui-bar" data-position="fixed" data-tap-toggle="false">
+        <a href="#" id="btnSaveContest" data-role="button" data-icon="check" data-theme="d" style="float: right; margin-right: 30px;">Save Contest</a>
+    </div>
+</div>
+
+<!-- confirm vote -->
+    <div data-role="page" data-dialog="true" id="promptForVoteConfirm">
+        <div class="ui-content">
+            <div class="ui-field-contain" style="text-align:center">
+            	
+            		<h3 id="voteConfirmCaption">
+                    Caption
+                </h3>
+                <p id="voteConfirmName">
+                    Name
+                </p>
+                
+                <div id="voteConfirmImageContainer"></div>
+                
+                <div id="divVoterName" data-role="fieldcontain">
+                	<form id="frmVoterName" data-ajax="false" onsubmit="app.voteById();return false;">
+		            <div id="divVoterName2" class="ui-field-contain">
+		                <label for="txtVoterName">
+							Voter Name:
+						</label>
+		                <input type="text" id="txtVoterName" placeholder="" class='voteSubmit' />
+					</div>
+					</form>
+                </div>
+                
+                <div id="divVoterPhoto" data-role="fieldcontain">
+                	<div class="ui-field-contain">
+		                <a id="btnTakeAPicture2" data-role="button" data-theme="d" href="#" data-icon="camera" data-iconpos="left">
+				          Take a selfie
+				        </a>
+					</div>
+					<div data-role="fieldcontain" id="photoContainer2">
+		            </div>
+                </div>
+                
+                
+                <a data-role="button" data-theme="d" id="voteById">
+		            Vote!
+		          </a>
+                <a data-role="button" data-theme="e" data-rel="back">
+			            Cancel
+			          </a>
+            
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- confirm vote -->
+    <div data-role="page" data-dialog="true" id="promptMoreResults">
+        <div class="ui-content">
+            <div class="ui-field-contain" style="text-align:center">
+            	<ul id="lvResultsMore" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="action" class="resultsLV">
+			                <li>There are no votes yet</li>
+			            </ul>
+            		
+                <a data-role="button" data-theme="e" data-rel="back">
+			            Back
+			          </a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- confirm delete vote -->
+    <div data-role="page" data-dialog="true" id="promptForDeleteVote">
+        <div class="ui-content">
+            <div class="ui-field-contain">
+                <p id="deleteVoteName">
+                    Name
+                </p>
+                <p id="deleteVoteCaption">
+                    Are you sure you want to delete this vote? You cannot undo this action.
+                </p>
+                <div id="deleteVoteImageContainer"></div>
+                <a data-role="button" data-theme="e" id="deleteVoteById">
+            Delete
+          </a>
+                <a data-role="button" data-theme="d" data-rel="back">
+            Cancel
+          </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ask to upgrade -->
+    <div data-role="page" data-dialog="true" id="promptForUpgrade">
+        <div class="ui-content">
+            <div class="ui-field-contain">
+                <p>
+                    If you are enjoying the app please support it by upgrading to the ad-free version!
+                </p>
+                <a data-role="button" data-theme="d" data-icon="shop" class="btnGoToStore">
+            Upgrade Now
+          </a>
+          <a data-role="button" data-theme="d" data-icon="eye" class="btnPlayVideo">
+            3 Hours Ad-free - Watch a Video
+          </a>
+                <a data-role="button" data-theme="e" data-icon="back" href="#home">
+            Close
+          </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- confirm delete entry -->
+    <div data-role="page" data-dialog="true" id="promptForDeleteEntry">
+        <div class="ui-content">
+            <div class="ui-field-contain">
+            	
+                <p id="deleteEntryName">
+                    Name
+                </p>
+                <p id="deleteEntryCaption">
+                    Are you sure you want to delete this entry? You cannot undo this action.
+                </p>
+                <div id="deleteEntryImageContainer"></div>
+                <a data-role="button" data-theme="e" id="deleteEntryById">
+            Delete
+          </a>
+                <a data-role="button" data-theme="d" data-rel="back">
+            Cancel
+          </a>
+            </div>
+        </div>
+    </div>
+    
+     <!-- confirm new contest -->
+    <div data-role="page" data-dialog="true" id="promptForNewContest">
+        <div class="ui-content">
+            <div class="ui-field-contain">
+                <p>
+                    Are you sure you want to delete the current contest and start a new one?
+                </p>
+                <a data-role="button" data-theme="e" id="deleteCurrentContest">
+            Delete
+          </a>
+                <a data-role="button" data-theme="d" data-rel="back">
+            Cancel
+          </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- confirm password -->
+    <div data-role="page" data-dialog="true" id="promptForPassword">
+        <div class="ui-content">
+            <div class="ui-field-contain">
+                <p>
+                    You must enter your password to continue.
+                </p>
+                <div class="ui-field-contain">
+                    <label for="txtPassword">
+						Password:
+					</label>
+					
+	                <input type="password" id="txtPassword" />
+				</div>
+		<div class="ui-field-contain">	
+                <a data-role="button" data-theme="d" id="enterPassword">
+            Submit
+          </a>
+      </div>
+      <div class="ui-field-contain">
+                <a data-role="button" data-theme="e" id="cancelPassword">
+            Cancel
+          </a>
+         </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- START nailthumb thumbnail resize -->
+    <script src="lib/nailthumb/jquery.nailthumb.1.1.min.js">
+    </script>
+    <link rel="stylesheet" property="stylesheet" href="lib/nailthumb/jquery.nailthumb.1.1.min.css" />
+    <!-- end nailthumb -->
+    <!-- start simpleDialog for popups -->
+    <link rel="stylesheet" property="stylesheet" href="lib/simpledialog/jquery.mobile.simpledialog.min.css" />
+    <script type="text/javascript" src="lib/simpledialog/jquery.mobile.simpledialog2.js">
+    </script>
+    <!-- end simpleDialog -->
+    <!-- START Spinbox scoring widget -->
+    <script type="text/javascript" src="js/jqm-spinbox.js">
+    </script>
+    <!-- END Spinbox -->
+    <!-- START swipebox photo viewer -->
+    <script src="lib/swipebox/js/jquery.swipebox.min.js">
+    </script>
+    <link rel="stylesheet" property="stylesheet" href="lib/swipebox/css/swipebox.min.css">
+    <!-- END swipebox -->
+    <!-- START MATH -->
+    <script src="lib/math/math.js">
+    </script>
+    <!-- END MATH -->
+    <script src="InAppBrowser.js">
+    </script>
+    <script src="js/plugins/SocialSharing.js">
+    </script>
+    
+    <!-- START load local javascript last -->
+
+    <script src="js/humane.js">
+    </script>
+    <script src="js/json2xml.js">
+    </script>
+    
+    <!-- END load local javascript -->
+
+    <script type="text/javascript" src="js/core/device.js">
+    </script>
+    <script type="text/javascript" src="js/core/globals.js">
+    </script>
+    <script type="text/javascript" src="js/core/shell.js">
+    </script>
+    <script type="text/javascript" src="js/core/inout.js">
+    </script>
+    <script type="text/javascript" src="js/objects.js">
+    </script>
+    <script type="text/javascript" src="js/functions.js">
+    </script>
+
+    <script type="text/javascript" src="js/core/cloudAll.js">
+    </script>
+    <script type="text/javascript" src="js/core/cloudLocal.js">
+    </script>
+    
+    <script type="text/javascript" src="js/core/inAppLocal.js">
+    </script>
+    <script type="text/javascript" src="js/core/inAppAll.js">
+    </script>
+
+    
+    <script type="text/javascript" src="js/core/AdsLocal3.js">
+    </script>
+    
+    <script type="text/javascript" src="js/core/AdsAll3.js">
+    </script>
+    
+    <script type="text/javascript" src="js/core/popup.js">
+    </script>
+
+    <script type="text/javascript" src="js/core/fileIO.js">
+    </script>
+
+    <script type="text/javascript" src="js/core/internet.js">
+    </script>
+    <script type="text/javascript" src="js/storage/localstorage.js">
+    </script>
+    <script type="text/javascript" src="js/core/social.js">
+    </script>
+    <script type="text/javascript" src="js/core/toast.js">
+    </script>
+
+    <script type="text/javascript" src="js/main.js">
+    </script>
+
+    <script type="text/javascript" src="lib/pnotify/pnotify.custom.min.js"></script>
+
+    <script src="lib/crypto/base64.js"></script>
+
+    <!-- start jQuery UI and touchpunch -->
+    <!-- It was causing problems wto load jquery-ui and touch-punch before spinbox and datebox -->
+    <script type="text/javascript" src="lib/jquery-ui/jquery-ui.min.js">
+    </script>
+    <script type="text/javascript" src="lib/touch-punch/jquery.ui.touch-punch.min.js">
+    </script>
+    <!-- It was causing problems wto load jquery-ui and touch-punch before spinbox and datebox -->
+    <!-- (End) Add jQuery UI Touch Punch -->
+
+    <!--  For FireFoxOS 
+<script src="cordova.js">
+</script>
+<script src="cordova_plugins.js">
+</script>
+    
+     for everything else -->
+
+    <script type="text/javascript" src="js/onDeviceReady.js">
+    </script>
+	
+</body>
+
+</html>
