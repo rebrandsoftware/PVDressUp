@@ -3,12 +3,12 @@ var Globals = {
     initialize: function(callback) {
         //console.log("[GLOBALS] Initialize");
         this.allLogs = [];
-        this.bDebug = true;
+        this.bDebug = false;
         this.bDebugFakes=false;
         this.bNoIndexedDB = false;
         this.bNoLocalStorage = false;
         this.deleteIndexedDb = false;
-        this.deleteLocalStorage = true;
+        this.deleteLocalStorage = false;
         this.showedStorageError = false;
         this.deleteWebSQL = false;
         this.usingIndexedDb = false;
