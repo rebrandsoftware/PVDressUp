@@ -153,7 +153,7 @@ var AdsAll = {
     
 	initialize: function(callback) {
 		//console.log("[AdsAll]initialize");
-		this.bTesting = false;
+		this.bTesting = true;
 		this.bShowedBanner = false;
 		this.adObj=null;
 		this.adNetwork="admob";
