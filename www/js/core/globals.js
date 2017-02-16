@@ -25,7 +25,7 @@ var Globals = {
         this.fakePhoto = "";
         this.androidKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsDCTJtAk26Jd0g1vuonGPF4ceq/1bBaIQmIKJNgHFlVH9ZauGaIdGLOsQtnhoY0GR5UU7kcmybCiwiFss8m1HRfETaqN7sbssD0+vJzJzC8JkwQHJwoEN6IfV3unPi4YUVHbC1lF6Fy4E2bOvcc9NrIhpmxdL0nduzsIzT/Hkb3EJgdoPf9NvmXiegCHkvbnZKn5nInjdiMLHcUUuZMLjdssgZhPm5VoRGGSVTpOXhLgjOyVSfBnurZY1aSZ/GFOP/aIgTd36eFr1lG1os3Odk3W46v5gRAjRyTZ0gK18LGK/4wuzP8yDSBKE/whUmXrw/FUErKvMh8b4i6wKTGjzwIDAQAB";
         this.socialRateURL = "http://www.rebrandsoftware.com/rate.asp?soft_id=[APP_ID]&os=[OS]&appstore=True";
-        this.appStoreURL = "https://itunes.apple.com/us/app/scoregeek/id648921280?ls=1&mt=8";
+        this.appStoreURL = "https://itunes.apple.com/us/app/partyvote-dress-up/id1206092256?ls=1&mt=8";
         this.socialTweetURL = "http://www.rebrandsoftware.com/tweet.asp?id=[APP_ID]";
         this.socialFollowURL = "http://www.rebrandsoftware.com/follow.asp";
         this.socialLikeURL = "http://www.rebrandsoftware.com/like.asp?id=[APP_ID]";

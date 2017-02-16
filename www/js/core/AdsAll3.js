@@ -16,7 +16,7 @@ function AdObj(banner, image, video, imageOrVideo) {
 var AdsAll = {
 	initNetwork: function(network, callback) {
 		//console.log("[AdsAll]initNetwork " + network);
-		
+		if (Device.platform !== "Browser") {
 		AdsAll.adNetwork = network;
 		switch (network) {
 			case "admob":
@@ -25,12 +25,14 @@ var AdsAll = {
 				break;
 			
 		}
+		}
 		if (callback) {
 			callback();
 		}
 	},
 	showBanner: function() {
 		//Toast.toastMiniLong("[AdsAll]showBanner " + AdsAll.adNetwork + " " + AdsAll.bTesting);
+		if (Device.platform !== "Browser") {
 		switch(AdsAll.adNetwork) {
 			case "admob":
 				if(admob) {
@@ -49,9 +51,11 @@ var AdsAll = {
 				break;
 			
 		}
+		}
 	},
 	removeBanner: function() {
 		//console.log("[AdsAll]removeBanner");
+		if (Device.platform !== "Browser") {
 		switch(AdsAll.adNetwork) {
 			case "admob":
 			
@@ -62,10 +66,11 @@ var AdsAll = {
 				break;
 			
 		}
-		
+		}
 	},
 	showInterstitial: function(callback) {
 		//console.log("[AdsAll]showInterstitial");
+		if (Device.platform !== "Browser") {
 		switch(AdsAll.adNetwork) {
 			case "admob":
 				if(admob) {
@@ -77,61 +82,74 @@ var AdsAll = {
 		if (callback) {
 			callback();
 		}
+		}
 	},
 	
 	prepareInterstitialImage: function(autoShow) {
 		//console.log("[AdsAll]prepareInterstitialImage");
-		switch(AdsAll.adNetwork) {
-			case "admob":
-				if(admob) {
-					admob.interstitial.config({
-					    id: AdsAll.adObj.image,
-					    isTesting: AdsAll.bTesting,
-					    autoShow: autoShow
-					 });
-					  admob.interstitial.prepare();
-				}
-				break;
-		}
+		
+		if (Device.platform !== "Browser") {
+			
+		
+			switch(AdsAll.adNetwork) {
+				case "admob":
+					if(admob) {
+						admob.interstitial.config({
+						    id: AdsAll.adObj.image,
+						    isTesting: AdsAll.bTesting,
+						    autoShow: autoShow
+						 });
+						  admob.interstitial.prepare();
+					}
+					break;
+			}
+			}
 	},
 	prepareInterstitialImageOrVideo: function(autoShow) {
 		//console.log("[AdsAll]prepareInterstitialImageOrVideo");
-		Toast.toastMini("AdsAll.bTesting: " + AdsAll.bTesting);
-		switch(AdsAll.adNetwork) {
-			case "admob":
-				if(admob) {
-					admob.interstitial.config({
-					    id: AdsAll.adObj.imageOrVideo,
-					    isTesting: AdsAll.bTesting,
-					    autoShow: autoShow
-					 });
-					  admob.interstitial.prepare();
-				}
-				break;
-			
+		//Toast.toastMini("AdsAll.bTesting: " + AdsAll.bTesting);
+		if (Device.platform !== "Browser") {
+			switch(AdsAll.adNetwork) {
+				case "admob":
+					if(admob) {
+						admob.interstitial.config({
+						    id: AdsAll.adObj.imageOrVideo,
+						    isTesting: AdsAll.bTesting,
+						    autoShow: autoShow
+						 });
+						  admob.interstitial.prepare();
+					}
+					break;
+				
+			}
 		}
 	},
 	
 	prepareInterstitialVideo: function(autoShow) {
 		//console.log("[AdsAll]prepareInterstitialVideo");
-		Toast.toastMini("AdsAll.bTesting: " + AdsAll.bTesting);
-		AdsAll.bInterstitialReady = false;
-		switch(AdsAll.adNetwork) {
-			case "admob":
-				if(admob) {
-					admob.interstitial.config({
-					    id: AdsAll.adObj.video,
-					    isTesting: AdsAll.bTesting,
-					    autoShow: autoShow
-					 });
-					  admob.interstitial.prepare();
-				}
-				break;
-			
+		//Toast.toastMini("AdsAll.bTesting: " + AdsAll.bTesting);
+		if (Device.platform !== "Browser") {
+			AdsAll.bInterstitialReady = false;
+			switch(AdsAll.adNetwork) {
+				case "admob":
+					if(admob) {
+						admob.interstitial.config({
+						    id: AdsAll.adObj.video,
+						    isTesting: AdsAll.bTesting,
+						    autoShow: autoShow
+						 });
+						  admob.interstitial.prepare();
+					}
+					break;
+				
+			}
 		}
 	},
 	
     prepareRewardVideo: function(adUnitId, bTesting, bAutoShow, callback) {
+    	if (Device.platform !== "Browser") {
+    		
+    	
 	  	console.log("[ADS]prepareRewardVideo " + adUnitId + " testing: " + bTesting + " autoShow: " + bAutoShow);
 	  		admob.rewardvideo.config({
 	           id: adUnitId,
@@ -140,20 +158,22 @@ var AdsAll = {
 	       });
 	 
 	       admob.rewardvideo.prepare();	
+	     }
 	       callback();	    		
 	 
 	  },
 	  showRewardVideo: function(callback) {
 		 console.log("[ADS]showRewardVideo");
-		 
+		 if (Device.platform !== "Browser") {
 		 admob.rewardvideo.show();
+		 }
 		      	callback();	
 		 
 	  },
     
 	initialize: function(callback) {
 		//console.log("[AdsAll]initialize");
-		this.bTesting = true;
+		this.bTesting = false;
 		this.bShowedBanner = false;
 		this.adObj=null;
 		this.adNetwork="admob";

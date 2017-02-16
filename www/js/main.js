@@ -420,10 +420,10 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
             			bg = "#ffffff";
             			break;
             		case "Princess Pink":
-            			bg = "#ffffff";
+            			bg = "#ffe3fb";
             			break;
             		case "Elegant Blue":
-            			bg = "#00d7ff";
+            			bg = "#bbf4fd";
             			break;
             		case "Superhero":
             			bg = "#ffffff";
@@ -734,21 +734,21 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
             	if (Globals.bDebugFakes === true) {
             		var fakeEntries=[];
 	            	var e;
-	            	e = new ContestEntry(0, "img/Nintendo.jpg", "Nintendo Family", "", false);
+	            	e = new ContestEntry(0, "img/NorthMountain.jpg", "North Mountain", "", false);
 	            	fakeEntries.push(e);
-	            	e = new ContestEntry(1, "img/Joker.jpg", "The Joker and Catwoman", "", false);
+	            	e = new ContestEntry(1, "img/BabyFairy.jpg", "Baby Fairy", "", false);
 	            	fakeEntries.push(e);
-	            	e = new ContestEntry(2, "img/EvilClowns.jpg", "Evil Clowns", "", false);
+	            	e = new ContestEntry(2, "img/Ladybug.jpg", "Ladybug", "", false);
 	            	fakeEntries.push(e);
-	            	e = new ContestEntry(3, "img/Dracula.jpg", "Dracula", "", false);
+	            	e = new ContestEntry(3, "img/RainyDay.jpg", "Rainy Day", "", false);
 	            	fakeEntries.push(e);
-	            	e = new ContestEntry(4, "img/Devil.jpg", "The Devil", "", false);
+	            	e = new ContestEntry(4, "img/Bear.jpg", "Polar Bear", "", false);
 	            	fakeEntries.push(e);
-	            	e = new ContestEntry(5, "img/Creep.jpg", "Creep", "", false);
+	            	e = new ContestEntry(5, "img/DancingQueen.jpg", "Dancing Queen", "", false);
 	            	fakeEntries.push(e);
-	            	e = new ContestEntry(6, "img/Fake07.JPG", "Tree", "Please vote for me", false);
+	            	e = new ContestEntry(6, "img/Pumpkin.jpg", "Pumpkin", "", false);
 	            	fakeEntries.push(e);
-	            	e = new ContestEntry(7, "img/Fake08.JPG", "Eloise", "Please vote for me instead", false);
+	            	e = new ContestEntry(7, "img/BumbleBee.jpg", "Bumblebee", "", false);
 	            	fakeEntries.push(e);
 	            	callback(fakeEntries);
             	} else {
@@ -1857,7 +1857,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
             	this.currTheme="Princess Pink";
                 this.currThemeLetters=["a", "b", "c", "d", "e"];
                 this.currThemeBackground=0;
-                this.currBackgroundColor="#ffffff";
+                this.currBackgroundColor="#ffe3fb";
                 callback();
             },
         	initialize: function(callback) {
@@ -2084,7 +2084,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                	
 	                	if (app.myContest === null) {
 	                		var category = new Category("Best Costume");
-	                		app.myContest = new Contest(getTimestamp(), "", "Dress Up Party", "Princess Pink", true, false, false, false, false, true, [category], false, false, "", false, "", false);
+	                		app.myContest = new Contest(getTimestamp(), "", "Dress Up Party", "Princess Pink", true, false, false, false, false, true, [category], false, false, "", false, false, "", false);
 	                		app.addCategories(app.myContest.categories, function() {
 	                    		app.store.addContest(app.myContest, function() {
 		                    		var ts = getTimestamp();
@@ -2155,7 +2155,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                		app.tempContest = new Contest(id, "", name, style, entryAllowNames, entryAllowCaptions, voteShowScore, voteRequireName, voteRequirePhoto, voteAllowComments, categories, isOnline, isPasswordProtected, password, savePhotos, saveVoterPhotos, backgroundImage, social);
 	                	} else {
 	                		var category = new Category("Best Costume");
-	                		app.tempContest = new Contest(getTimestamp(), "", "", "Princess Pink", true, false, false, false, false, true, [category], false, false, "", false, "", false);
+	                		app.tempContest = new Contest(getTimestamp(), "", "", "Princess Pink", true, false, false, false, false, true, [category], false, false, "", false, false, "", false);
 	                	}
 	                	
 	                	c = app.tempContest;
