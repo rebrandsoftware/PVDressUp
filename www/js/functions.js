@@ -1067,6 +1067,45 @@ Array.prototype.shuffle = function(callback) {
     return this;
 };
 
+function numberToText(number) {
+	console.log(number);
+	var ret;
+	switch (number) {
+		case 0:
+			ret = "zero";
+			break;
+		case 1:
+			ret = "one";
+			break;
+		case 2:
+			ret = "two";
+			break;
+		case 3:
+			ret = "three";
+			break;
+		case 4:
+			ret = "four";
+			break;
+		case 5:
+			ret = "five";
+			break;
+		case 6:
+			ret = "six";
+			break;
+		case 7:
+			ret = "seven";
+			break;
+		case 8:
+			ret = "eight";
+			break;
+		case 9:
+			ret = "nine";
+			break;
+	}
+	
+	return ret;
+}
+
 function randomIntFromInterval(min,max)
 {
     return Math.floor(Math.random()*(max-min+1)+min);
