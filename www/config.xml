@@ -51,11 +51,12 @@
     
     <!-- AdMob and Mediation -->
     <plugin name="cordova-plugin-admob-free" source="npm" />
+    <!--
     <plugin spec="https://github.com/becvert/cordova-plugin-admob-mediation-adbuddiz.git" source="git" />
     <plugin spec="https://github.com/becvert/cordova-plugin-admob-mediation-facebook.git" source="git" />
     <plugin spec="https://github.com/warcry2000/cordova-plugin-admob-mediation-adcolony.git" source="git" />
     <plugin spec="https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git" source="git" />
-    
+    -->
 	<allow-navigation href="http://*/*" />
 	<allow-intent href="https://*/*" />
 
