@@ -41,8 +41,6 @@ var AdsAll = {
 					admob.banner.config({
 					    id: AdsAll.adObj.banner,
 					    isTesting: AdsAll.bTesting,
-					    forChild: AdsAll.bForChild,
-					    forFamily: AdsAll.bForFamily,
 					    autoShow: true
 					 });
 					 //console.log("config complete");
@@ -99,8 +97,6 @@ var AdsAll = {
 						admob.interstitial.config({
 						    id: AdsAll.adObj.image,
 						    isTesting: AdsAll.bTesting,
-						    forChild: AdsAll.bForChild,
-					    	forFamily: AdsAll.bForFamily,
 						    autoShow: autoShow
 						 });
 						  admob.interstitial.prepare();
@@ -119,8 +115,6 @@ var AdsAll = {
 						admob.interstitial.config({
 						    id: AdsAll.adObj.imageOrVideo,
 						    isTesting: AdsAll.bTesting,
-						    forChild: AdsAll.bForChild,
-					    	forFamily: AdsAll.bForFamily,
 						    autoShow: autoShow
 						 });
 						  admob.interstitial.prepare();
@@ -142,8 +136,6 @@ var AdsAll = {
 						admob.interstitial.config({
 						    id: AdsAll.adObj.video,
 						    isTesting: AdsAll.bTesting,
-						    forChild: AdsAll.bForChild,
-					        forFamily: AdsAll.bForFamily,
 						    autoShow: autoShow
 						 });
 						  admob.interstitial.prepare();
@@ -162,8 +154,6 @@ var AdsAll = {
 	  		admob.rewardvideo.config({
 	           id: adUnitId,
 	           isTesting: bTesting,
-	           forChild: AdsAll.bForChild,
-			   forFamily: AdsAll.bForFamily,
 	           autoShow: bAutoShow
 	       });
 	 
@@ -184,8 +174,6 @@ var AdsAll = {
 	initialize: function(callback) {
 		//console.log("[AdsAll]initialize");
 		this.bTesting = false;
-		this.bForFamily=true;
-		this.bForChild=true;
 		this.bShowedBanner = false;
 		this.adObj=null;
 		this.adNetwork="admob";
