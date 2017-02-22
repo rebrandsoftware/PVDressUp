@@ -15,7 +15,7 @@ var InAppAll = {
 			})
 			.catch(function (err) {
 			    //console.log(JSON.stringify(err));
-			    Toast.toast(err.text);
+			    Toast.toast(JSON.stringify(err));
 			    callback();
 			  });	
 		} else {
@@ -39,7 +39,7 @@ var InAppAll = {
 		  })
 		  .catch(function (err) {
 		    //console.log(JSON.stringify(err));
-		    Toast.toast(err.text);
+		    Toast.toast(JSON.stringify(err));
 		  });
 	},
 	processPurchase: function(productId, data, callback) {
@@ -81,7 +81,7 @@ var InAppAll = {
 		    var bCheck = false;
 		   	 if (Device.platform === "Android") {
 		   		 //console.log("Checking android purchase status");
-		   		 bCheck = true;
+		   		 //bCheck = true;
 		   	 }
 		   	
 		   	var l = data.length;
@@ -92,20 +92,20 @@ var InAppAll = {
 		   	for (var i=0; i<l; i++) {
 		   		obj = data[i];
 		   		//console.log(JSON.stringify(obj));
-		   		if (bCheck === true) {
-		   			//console.log("State: " + obj.state);
-		   			if (obj.state) {
-		   				
-			   			
-			   			if (obj.state === 0) {
-			   				bCont = true;
-			   			} else {
-			   				bCont = false;
-			   			}
-		   			} else {
-		   				bCont = true;
-		   			}
-		   		}
+		   		// if (bCheck === true) {
+		   			// //console.log("State: " + obj.state);
+		   			// if (obj.state) {
+// 		   				
+// 			   			
+			   			// if (obj.state === 0) {
+			   				// bCont = true;
+			   			// } else {
+			   				// bCont = false;
+			   			// }
+		   			// } else {
+		   				// bCont = true;
+		   			// }
+		   		// }
 		   		
 		   		//console.log("bCont: " + bCont);
 		   		
@@ -140,7 +140,7 @@ var InAppAll = {
 		  })
 		  .catch(function (err) {
 		    //console.log(JSON.stringify(err));
-		    Toast.toast(err.text);
+		    Toast.toast(JSON.stringify(err));
 		  });
 	},
 	filterProducts: function(products, callback) {
