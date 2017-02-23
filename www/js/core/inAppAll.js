@@ -1,3 +1,9 @@
+//WARNING: DO NOT FORGET 
+//THAT THE ANDROID APP ID 
+//MUST BE ENTERED INTO THE
+//FILE CALLED MANIFEST.JSON
+
+
 var InAppAll = {
 	getProducts: function(callback) {
 		//console.log("[InAppAll]getProducts ");
