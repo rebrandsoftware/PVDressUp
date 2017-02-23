@@ -3,7 +3,7 @@ var Globals = {
     initialize: function(callback) {
         //console.log("[GLOBALS] Initialize");
         this.allLogs = [];
-        this.bDebug = false;
+        this.bDebug = true;
         this.bDebugFakes=false;
         this.bNoIndexedDB = false;
         this.bNoLocalStorage = false;
@@ -23,7 +23,7 @@ var Globals = {
         this.cloudUserSpecific = "";
         this.lastImport = 0;
         this.fakePhoto = "";
-        this.androidKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsDCTJtAk26Jd0g1vuonGPF4ceq/1bBaIQmIKJNgHFlVH9ZauGaIdGLOsQtnhoY0GR5UU7kcmybCiwiFss8m1HRfETaqN7sbssD0+vJzJzC8JkwQHJwoEN6IfV3unPi4YUVHbC1lF6Fy4E2bOvcc9NrIhpmxdL0nduzsIzT/Hkb3EJgdoPf9NvmXiegCHkvbnZKn5nInjdiMLHcUUuZMLjdssgZhPm5VoRGGSVTpOXhLgjOyVSfBnurZY1aSZ/GFOP/aIgTd36eFr1lG1os3Odk3W46v5gRAjRyTZ0gK18LGK/4wuzP8yDSBKE/whUmXrw/FUErKvMh8b4i6wKTGjzwIDAQAB";
+        this.androidKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy+Jqq8DTHsbzSd8dtPtXAbyxQfM5tO2wgJ2TBw6bT1CMEd2qIHevKvaA9vcZ7MVSvgigOIlRK/7Xc3/IpPaaTqfhh44Z8z0GQZSoxEE40p7KOFiZYDllZSW+2mP/9jKZubH0mzj/t60HDdgQCoC5toO9eltXHvXQEQwlycq1AvvpU9ebtwG2qy8ddQDBuU96FkKe7v4nRYXJuoTdWl/VB3VDbNXQ8ZCHMakl70/5zw+IkSn/HJGp2HLGQk/z8j7XjRnglYVrLETGZpkBK4P1nRfDZkVvob/EJSbc3XBk4i9k+ow++9MkJFqaigCbkue0le+H8/l/1ikXHQ//Jnt4IwIDAQAB";
         this.socialRateURL = "http://www.rebrandsoftware.com/rate.asp?soft_id=[APP_ID]&os=[OS]&appstore=True";
         this.appStoreURL = "https://itunes.apple.com/us/app/partyvote-dress-up/id1206092256?ls=1&mt=8";
         this.socialTweetURL = "http://www.rebrandsoftware.com/tweet.asp?id=[APP_ID]";

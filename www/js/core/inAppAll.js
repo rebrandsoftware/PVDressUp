@@ -1,12 +1,13 @@
 var InAppAll = {
 	getProducts: function(callback) {
-		//console.log("[InAppAll]getProducts");
+		console.log("[InAppAll]getProducts ");
+		console.log(InAppLocal.productIds);
 		if (Device.platform === "iOS" || Device.platform === "Android") {
 			inAppPurchase
 			.getProducts(InAppLocal.productIds) 
 			.then(function(products) {
-				//console.log(JSON.stringify(products));
-				//console.log("found " + products.length + " products");
+				console.log(JSON.stringify(products));
+				console.log("found " + products.length + " products");
 				InAppAll.filterProducts(products, function(products) {
 					InAppAll.writeProducts(products, function() {
 						callback();
@@ -14,7 +15,7 @@ var InAppAll = {
 				});
 			})
 			.catch(function (err) {
-			    //console.log(JSON.stringify(err));
+			    console.log(JSON.stringify(err));
 			    Toast.toast(JSON.stringify(err));
 			    callback();
 			  });	
@@ -23,11 +24,11 @@ var InAppAll = {
 		}
 	},
 	buy: function(productId) {
-		//console.log("[InAppAll]buy " + productId);
+		console.log("[InAppAll]buy " + productId);
 		inAppPurchase
 		  .buy(productId)
 		  .then(function (data) {
-		    //console.log(JSON.stringify(data));
+		    console.log(JSON.stringify(data));
 		    
 		    InAppAll.processPurchase(productId, data, function() {
 		    	InAppLocal.processPurchase(productId, function() {
@@ -38,12 +39,13 @@ var InAppAll = {
 		    });
 		  })
 		  .catch(function (err) {
-		    //console.log(JSON.stringify(err));
+		    console.log(JSON.stringify(err));
 		    Toast.toast(JSON.stringify(err));
 		  });
 	},
 	processPurchase: function(productId, data, callback) {
-		//console.log("[InAppAll]processPurchase " + productId);
+		console.log("[InAppAll]processPurchase " + productId);
+		console.log(JSON.stringify(data));
 		if (data) {
 			data.productId = productId;
 			InAppAll.savePurchase(data, function() {
@@ -51,23 +53,23 @@ var InAppAll = {
 				callback(productId);
 			});
 		} else {
-			Toast.toast('Huh?');
+			Toast.toast('Error: No data returned from app store');
 		}
 	},
 	savePurchase: function(purchase, callback) {
-		//console.log("[InAppAll]savePurchase");
+		console.log("[InAppAll]savePurchase");
 		app.store.addInAppPurchase(purchase, function() {
 			callback();
 		});
 	},
 	restorePurchases: function() {
-		//console.log("[InAppAll]restorePurchases");
+		console.log("[InAppAll]restorePurchases");
 		
 		inAppPurchase
 		  .restorePurchases()
 		  .then(function (data) {
-		  	//console.log(JSON.stringify(data));
-		    //console.log("Found " + data.length + " purchases to restore");
+		  	console.log(JSON.stringify(data));
+		    console.log("Found " + data.length + " purchases to restore");
 		    
 		    
 		    /*
@@ -91,9 +93,9 @@ var InAppAll = {
 		   	var productId;
 		   	for (var i=0; i<l; i++) {
 		   		obj = data[i];
-		   		//console.log(JSON.stringify(obj));
+		   		console.log(JSON.stringify(obj));
 		   		// if (bCheck === true) {
-		   			// //console.log("State: " + obj.state);
+		   			//console.log("State: " + obj.state);
 		   			// if (obj.state) {
 // 		   				
 // 			   			
@@ -107,17 +109,17 @@ var InAppAll = {
 		   			// }
 		   		// }
 		   		
-		   		//console.log("bCont: " + bCont);
+		   		console.log("bCont: " + bCont);
 		   		
 		   		if (bCont === true) {
 		   			iDone ++;
-		   			//console.log("done: " + iDone);
+		   			console.log("done: " + iDone);
 		   			productId = obj.productId;
-		   			//console.log("productId: " + productId);
+		   			console.log("productId: " + productId);
 		   			InAppAll.processPurchase(productId, obj, function(productIdPassback) {
-		   				//console.log("Processed: " + productIdPassback);
+		   				console.log("Processed: " + productIdPassback);
 				    	InAppLocal.processPurchase(productIdPassback, function() {
-				    		//console.log("after processPurchase");
+				    		console.log("after processPurchase");
 				    	});
 				    });
 		   		}
@@ -139,7 +141,7 @@ var InAppAll = {
 		   
 		  })
 		  .catch(function (err) {
-		    //console.log(JSON.stringify(err));
+		    console.log(JSON.stringify(err));
 		    Toast.toast(JSON.stringify(err));
 		  });
 	},
@@ -172,13 +174,13 @@ var InAppAll = {
 		
 	},
 	writeProducts: function(products, callback) {
-		//console.log("[InAppAll]writeProducts " + products.length);
+		console.log("[InAppAll]writeProducts " + products.length);
 		var html = "<li data-role='list-divider' data-theme='" + app.currThemeLetters[1] + "'>Available Items</li>";
 		var l = products.length;
 		var written = 0;
 		
 		for (var i=0; i<l; i++) {
-			//console.log(JSON.stringify(products[i]));
+			console.log(JSON.stringify(products[i]));
 			html += '<li id="' + products[i].productId + '"><a id="' + products[i].productId + '" href="#" class="inAppPurchase">' + products[i].price + ' - ' + products[i].title + '</a></li>';
 		}
 		
@@ -194,56 +196,56 @@ var InAppAll = {
         InAppLocal.$productUL.trigger("updatelayout");
 	},
 	isUpgraded: function(callback) {
-		//console.log("[InAppAll]isUpgraded");
+		console.log("[InAppAll]isUpgraded");
 		InAppLocal.isUpgraded(function(isUpgraded) {
 			if (isUpgraded === true) {
-				//console.log("Fully Upgraded");
+				console.log("Fully Upgraded");
 				callback(true);
 			} else {
 				InAppAll.isUpgradedWithTimeout(function(isUpgraded) {
-					//console.log("Timeout upgraded: " + isUpgraded);
+					console.log("Timeout upgraded: " + isUpgraded);
 					callback(isUpgraded);
 				});
 			}
 		});
 	},
 	isUpgradedWithTimeout: function(callback) {
-		//console.log("[InAppAll]isUpgradedWithTimeout");
+		console.log("[InAppAll]isUpgradedWithTimeout");
 		var ts = getTimestamp();
 		InAppAll.getUpgradeTimeout(function(exp) {
-			//console.log("if " + ts + " > " + exp);
+			console.log("if " + ts + " > " + exp);
 			if (ts > exp) {
 				//expired
-				//console.log("expired");
+				console.log("expired");
 				callback(false);
 			} else {
 				callback(true);
-				//console.log("not expired");
+				console.log("not expired");
 			}			
 		});
 
 	},
 	getUpgradeTimeout: function(callback) {
-		//console.log("[InAppAll]getUpgradeTimeout");
+		console.log("[InAppAll]getUpgradeTimeout");
 		Shell.getSetting("inappUpgradeTimeout", -1, function(setting) {
-			//console.log("setting: " + setting);
+			console.log("setting: " + setting);
 			callback(setting);
 		});
 	},
 	setUpgradedWithTimeout: function(timeout, callback) {
-		//console.log("[InAppAll]setUpgradedWithTimeout " + timeout);
+		console.log("[InAppAll]setUpgradedWithTimeout " + timeout);
 		Shell.saveSetting("inappUpgradeTimeout", timeout);
 		if (callback) {
 			callback();
 		}
 	},
 	initialize: function() {
-		//console.log("[InAppAll]initialize");
+		console.log("[InAppAll]initialize");
 		
 		InAppLocal.$productUL.on('click', 'a', function() {
-            //console.log("[InAppAll]click");
+            console.log("[InAppAll]click");
             var id = $(this).attr("id");
-            //console.log("id: " + id);
+            console.log("id: " + id);
             if (id === "-1") {
             	InAppAll.restorePurchases();	
             } else {
@@ -252,9 +254,9 @@ var InAppAll = {
         });
         
         InAppLocal.$inAppPage.on('pagebeforeshow', function() {
-        	//console.log('[InAppAll]pagebeforeshow');
+        	console.log('[InAppAll]pagebeforeshow');
         	InAppAll.getProducts(function() {
-        		//console.log("After getProducts");
+        		console.log("After getProducts");
         	});
         });
         
