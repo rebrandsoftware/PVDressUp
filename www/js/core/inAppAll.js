@@ -16,7 +16,7 @@ var InAppAll = {
 			})
 			.catch(function (err) {
 			    console.log(JSON.stringify(err));
-			    Toast.toast(JSON.stringify(err));
+			    Toast.toast(err.text);
 			    callback();
 			  });	
 		} else {
@@ -40,7 +40,7 @@ var InAppAll = {
 		  })
 		  .catch(function (err) {
 		    console.log(JSON.stringify(err));
-		    Toast.toast(JSON.stringify(err));
+		    Toast.toast(err.text);
 		  });
 	},
 	processPurchase: function(productId, data, callback) {
@@ -142,7 +142,7 @@ var InAppAll = {
 		  })
 		  .catch(function (err) {
 		    console.log(JSON.stringify(err));
-		    Toast.toast(JSON.stringify(err));
+		    Toast.toast(err.text);
 		  });
 	},
 	filterProducts: function(products, callback) {
