@@ -82,8 +82,8 @@ var InAppAll = {
 		    */
 		    var bCheck = false;
 		   	 if (Device.platform === "Android") {
-		   		 //console.log("Checking android purchase status");
-		   		 //bCheck = true;
+		   		 console.log("Checking android purchase status");
+		   		 bCheck = true;
 		   	 }
 		   	
 		   	var l = data.length;
@@ -94,20 +94,20 @@ var InAppAll = {
 		   	for (var i=0; i<l; i++) {
 		   		obj = data[i];
 		   		console.log(JSON.stringify(obj));
-		   		// if (bCheck === true) {
-		   			//console.log("State: " + obj.state);
-		   			// if (obj.state) {
-// 		   				
-// 			   			
-			   			// if (obj.state === 0) {
-			   				// bCont = true;
-			   			// } else {
-			   				// bCont = false;
-			   			// }
-		   			// } else {
-		   				// bCont = true;
-		   			// }
-		   		// }
+		   		if (bCheck === true) {
+		   			console.log("State: " + obj.state);
+		   			if (obj.state) {
+		   				
+			   			
+			   			if (obj.state === 0) {
+			   				bCont = true;
+			   			} else {
+			   				bCont = false;
+			   			}
+		   			} else {
+		   				bCont = true;
+		   			}
+		   		}
 		   		
 		   		console.log("bCont: " + bCont);
 		   		
