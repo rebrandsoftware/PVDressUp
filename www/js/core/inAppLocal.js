@@ -1,6 +1,6 @@
 var InAppLocal = {
 	initialize: function() {
-		console.log("[InAppLocal]initialize");
+		//console.log("[InAppLocal]initialize");
 		this.productIds = ['pvdu1'];
 		this.upgradeId = this.productIds[0];
 		this.$productUL = $('#productUL');
@@ -8,11 +8,11 @@ var InAppLocal = {
 		this.bIsUpgraded=false;
 	},
 	processPurchase: function(productId, callback) {
-		console.log("[InAppLocal]processPurchase: " + productId);
+		//console.log("[InAppLocal]processPurchase: " + productId);
 		Social.addActionable(15);
 		
 		var pvdu1 = function(callback) {
-			console.log("doing pvdu1");
+			//console.log("doing pvdu1");
 			AdsAll.removeBanner();
 			callback();
 		};
@@ -29,9 +29,9 @@ var InAppLocal = {
 		
 	},
 	giveReward: function(productId, callback) {
-		console.log("[InAppLocal]giveReward " + productId);
+		//console.log("[InAppLocal]giveReward " + productId);
 		var pvdu1 = function(callback) {
-			console.log("giving reward pvdu1");
+			//console.log("giving reward pvdu1");
 			var ts = getTimestamp();
 			var rewardHours = 1;
 			var rewardTime = rewardHours * 60 * 60 * 1000;
@@ -57,20 +57,20 @@ var InAppLocal = {
 		}
 	},
 	isUpgraded: function(callback) {
-		console.log("[InAppLocal]isUpgraded");
+		//console.log("[InAppLocal]isUpgraded");
 		if (InAppLocal.bIsUpgraded === false) {
 			app.store.findInAppPurchaseByProductId(InAppLocal.upgradeId, function(myInAppPurchase) {
 				if (myInAppPurchase !== null) {
 					InAppLocal.bIsUpgraded = true;
-					console.log("true");
+					//console.log("true");
 					callback(true);
 				} else {
-					console.log("false");
+					//console.log("false");
 					callback(false);
 				}
 			});
 		} else {
-			console.log("true");
+			//console.log("true");
 			callback(true);
 		}
 	}
