@@ -3,7 +3,7 @@ var Globals = {
     initialize: function(callback) {
         //console.log("[GLOBALS] Initialize");
         this.allLogs = [];
-        this.bDebug = true;
+        this.bDebug = false;
         this.bDebugFakes=false;
         this.bNoIndexedDB = false;
         this.bNoLocalStorage = false;
