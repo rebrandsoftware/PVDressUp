@@ -1,6 +1,17 @@
 document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {console.log("[ADSALL]LOAD");});
 document.addEventListener('admob.rewardvideo.events.LOAD_FAIL', function(event) {console.log("[ADSALL]LOAD_FAIL");});
-document.addEventListener('admob.rewardvideo.events.OPEN', function(event) {console.log("[ADSALL]OPEN");});
+document.addEventListener('admob.rewardvideo.events.OPEN', function(event) {
+	console.log("[ADSALL]OPEN");
+	if (app.bPassedGate === false) {
+		Shell.getSetting("passedGate", false, function(setting) {
+    		if (setting === true) {
+    			
+    		} else {
+    			changePage("#gate");
+    		}
+    	});		
+	}
+});
 document.addEventListener('admob.rewardvideo.events.CLOSE', function(event) {console.log("[ADSALL]CLOSE");});
 document.addEventListener('admob.rewardvideo.events.EXIT_APP', function(event) {console.log("[ADSALL]EXITAPP");});
 document.addEventListener('admob.rewardvideo.events.START', function(event) {console.log("[ADSALL]START");});
@@ -194,6 +205,7 @@ var AdsAll = {
 		this.rewardCallback=null;
 		this.bWaitingForReward=false;
 		this.rewardStarted=0;
+		this.bPassedGate=false;
 		
 		$('.btnPlayVideo').on('click', function() {
 			console.log("clicked reward button");

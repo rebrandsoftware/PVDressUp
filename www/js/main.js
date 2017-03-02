@@ -447,8 +447,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                	$('#btnColor5').css('background', colors[4]).button().button("refresh");
             },
             showBannerDelay: function() {
-            	Shell.getSetting("passedGate", false, function(setting) {
-            		if (setting === true) {
+            	
             			if (AdsAll.bShowedBanner === false) {
 		            		InAppAll.isUpgraded(function(upgraded) {
 		            			if (upgraded === false) {
@@ -456,10 +455,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 		            			}
 		            		});
 		            	}	
-            		} else {
-            			changePage("#gate");
-            		}
-            	});
+            	
             },
             changeStyle: function(style, callback) {
             	//console.log("changeStyle: " + style);
