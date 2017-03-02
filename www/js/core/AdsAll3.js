@@ -183,7 +183,7 @@ var AdsAll = {
     
 	initialize: function(callback) {
 		//console.log("[AdsAll]initialize");
-		this.bTesting = false;
+		this.bTesting = true;
 		this.bForFamily=true;
 		this.bForChild=true;
 		this.bShowedBanner = false;
