@@ -104,7 +104,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
          		console.log(nums);
          		var $el = $('#gateQuestion');
          		var $elAnswer = $('#txtGateAnswer');
-         		var question = "To continue enter ";
+         		var question = "To continue enter the sum of ";
          		var l = nums.length;
          		for (var i=0; i<l; i++) {
          			question += numberToText(nums[i]);
