@@ -2065,6 +2065,8 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                $('#home').on('pagebeforeshow', function() {
 	                	//console.log("pagebeforeshow");
 	                	
+	                	app.showBannerDelay();
+	                	
 	                	app.lastPhoto = null;
 	                	app.lastVoterPhoto = null;
 	                	app.lastVoterName = "";
