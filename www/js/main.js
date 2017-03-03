@@ -85,66 +85,6 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 };
  
          var app = {
-         	setGate: function() {
-         		var nums = [];
-         		var num;
-         		var min = 2;
-         		var max = 6;
-         		var count = 4;
-         		var answer=0;
-         		for (var i=0; i<count; i++) {
-         			num = randomIntFromInterval(min,max);
-         			nums.push(num);
-         			answer += num;
-         		}
-         		app.gateAnswer = answer;
-         		app.writeGate(nums);
-         	},
-         	writeGate: function(nums) {
-         		console.log(nums);
-         		var $el = $('#gateQuestion');
-         		var $elAnswer = $('#txtGateAnswer');
-         		var question = "To continue enter the sum of ";
-         		var l = nums.length;
-         		for (var i=0; i<l; i++) {
-         			question += numberToText(nums[i]);
-         			if (i < l - 1) {
-         				question += " + ";
-         			}
-         		}
-         		console.log(question);
-         		$el.html(question);
-         		$elAnswer.val('');
-         		$elAnswer.focus();
-         		
-         	},
-         	gateSubmit: function() {
-         		var answer = $('#txtGateAnswer').val();
-         		console.log("is " + answer + " === " + app.gateAnswer);
-         		var wrongAnswer = function() {
-         			Toast.toast("Sorry, please try a different question");
-         			app.setGate();
-         		};
-         		
-         		var rightAnswer = function() {
-         			Toast.toast("Thank you!");
-         			Shell.saveSetting("passedGate", true);
-         			changePage('#home');
-         			app.showBannerDelay();
-         		};
-         		
-         		if (isNumeric(answer)) {
-         			var i = parseInt(answer);
-         			console.log(i + " === " + app.gateAnswer);
-     				if (i === app.gateAnswer) {
-     					rightAnswer();
-     				} else {
-     					wrongAnswer();
-     				}
-         		} else {
-         			wrongAnswer();	
-         		}
-         	},
          	newContest: function() {
          		app.editingContest = false;	
          		//console.log("app.newContest");
@@ -457,6 +397,8 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 		            	}	
             	
             },
+            
+            
             changeStyle: function(style, callback) {
             	//console.log("changeStyle: " + style);
             	var oldThemes=app.currThemeLetters;
@@ -1951,10 +1893,6 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                	changePage("#home");
 	                });
 	                
-	                $('#gateSubmit').on('click', function() {
-	                	app.gateSubmit();
-	                });
-	                
 	                $('#btnBackToHomeFromResults').on('click', function() {
             			InAppAll.isUpgraded(function(upgraded) {
 	                		//console.log("upgraded: " + upgraded);
@@ -2065,13 +2003,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
                 		$ul.trigger("updatelayout");
 					});
 					
-					$('#gate').on('pagebeforeshow', function() {
-						app.setGate();
-					});
-					
-					$('#gate').on('pageshow', function() {
-						$('#gateAnswer').focus();
-					});
+
 	                
 	                $('#results').on('pagebeforeshow', function() {
 	                	$('.canvasContainer').hide();

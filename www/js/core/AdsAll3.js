@@ -2,15 +2,7 @@ document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {cons
 document.addEventListener('admob.rewardvideo.events.LOAD_FAIL', function(event) {console.log("[ADSALL]LOAD_FAIL");});
 document.addEventListener('admob.rewardvideo.events.OPEN', function(event) {
 	console.log("[ADSALL]OPEN");
-	if (app.bPassedGate === false) {
-		Shell.getSetting("passedGate", false, function(setting) {
-    		if (setting === true) {
-    			
-    		} else {
-    			changePage("#gate");
-    		}
-    	});		
-	}
+	
 });
 document.addEventListener('admob.rewardvideo.events.CLOSE', function(event) {console.log("[ADSALL]CLOSE");});
 document.addEventListener('admob.rewardvideo.events.EXIT_APP', function(event) {console.log("[ADSALL]EXITAPP");});
@@ -205,14 +197,15 @@ var AdsAll = {
 		this.rewardCallback=null;
 		this.bWaitingForReward=false;
 		this.rewardStarted=0;
-		this.bPassedGate=false;
 		
 		$('.btnPlayVideo').on('click', function() {
 			console.log("clicked reward button");
-        	AdsAll.prepareRewardVideo(AdsLocal.admobAdUnitIdRewardVideo, AdsAll.bTesting, true, function() {
-        		console.log("after show reward video");
-        		
-        	});
+			Gate.check(function() {
+				AdsAll.prepareRewardVideo(AdsLocal.admobAdUnitIdRewardVideo, AdsAll.bTesting, true, function() {
+	        		console.log("after show reward video");
+	        		
+	        	});
+			}, $.mobile.activePage.attr('id'), false);
         });
         
 		if (callback) {

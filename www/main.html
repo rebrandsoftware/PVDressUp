@@ -289,11 +289,11 @@
 		        </a>
 		        
 		    </div>
-		    <!--
-		    <a data-role="button" id="btnGate" data-theme="b" href="#gate" data-icon="alert" data-iconpos="left" data-transition="pop">
+		    
+		    <a data-role="button" id="btnGate" data-theme="b" href="#" data-icon="alert" data-iconpos="left" data-transition="pop">
 		          Gate
 		       </a>
-		    -->
+		    
 		    <div class="debugDiv"></div>
 		    
         </div>
@@ -308,14 +308,16 @@
     
     <div data-role="page" id="gate">
         <div data-theme="a" data-role="header">
-        
+        	<a data-role="button" data-theme="e" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left android-back cancelGate">
+	            Cancel
+	        </a>
 	        <h3 id="contestName">
 	          PartyVote: Dress Up
 	        </h3>
         </div>
         <div class="ui-content">
         	
-        	<form id="frmGate" data-ajax="false" onsubmit="app.gateSubmit();return false;">
+        	<form id="frmGate" data-ajax="false" onsubmit="Gate.submit();return false;">
         	<div id="info" class="ui-body ui-body-a ui-corner-all"><h1>Parental Gate</h1><h3>Kids: Ask Your Parents</h3><p>This dress-up app for kids contains advertisments and offers in-app purchases. Please see the Settings menu for parental control options.</p><p id="gateQuestion">To continue </p></div>
         	<div data-role="ui-field-contain">
         		<div class="ui-field-contain">
@@ -1176,6 +1178,9 @@
     </script>
     
     <script type="text/javascript" src="js/core/popup.js">
+    </script>
+
+	<script type="text/javascript" src="js/core/gate.js">
     </script>
 
     <script type="text/javascript" src="js/core/fileIO.js">
