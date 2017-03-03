@@ -387,14 +387,15 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                	$('#btnColor5').css('background', colors[4]).button().button("refresh");
             },
             showBannerDelay: function() {
-            	
-            			if (AdsAll.bShowedBanner === false) {
-		            		InAppAll.isUpgraded(function(upgraded) {
-		            			if (upgraded === false) {
-		            				setTimeout(AdsAll.showBanner, 3000);
-		            			}
-		            		});
-		            	}	
+            	console.log("[APP]showBannerDelay");
+    			if (AdsAll.bShowedBanner === false) {
+            		InAppAll.isUpgraded(function(upgraded) {
+            			console.log("upgraded: " + upgraded);
+            			if (upgraded === false) {
+            				setTimeout(AdsAll.showBanner, 3000);
+            			}
+            		});
+            	}	
             	
             },
             

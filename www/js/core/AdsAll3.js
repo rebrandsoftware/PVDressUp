@@ -34,7 +34,7 @@ var AdsAll = {
 		}
 	},
 	showBanner: function() {
-		//Toast.toastMiniLong("[AdsAll]showBanner " + AdsAll.adNetwork + " " + AdsAll.bTesting);
+		console.log("[AdsAll]showBanner " + AdsAll.adNetwork + " " + AdsAll.bTesting);
 		if (Device.platform !== "Browser") {
 		switch(AdsAll.adNetwork) {
 			case "admob":
