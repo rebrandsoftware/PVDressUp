@@ -135,7 +135,7 @@ var Gate = {
 	    		} else {
 	    			Gate.continueFunc = continueFunc;
 	    			Gate.continuePage = continuePage;
-	    			Gate.cancelFun = cancelFunc;
+	    			Gate.cancelFunc = cancelFunc;
 	    			Gate.cancelPage = cancelPage;
 	    			Gate.bNoCancel = bNoCancel;
 	    			changePage("#gate");
@@ -166,14 +166,21 @@ var Gate = {
 		 $('.cancelGate').on('click', function() {
 			console.log("clicked cancel button");
 			if (Gate.cancelFunc !== null) {
+				console.log("doing function")
 				Gate.cancelFunc();
-			} else {
+			}
+
+			if (Gate.cancelPage !== null) {
 				if (Gate.cancelPage.indexOf("#") !== 0) {
 					Gate.cancelPage = "#" + Gate.cancelPage;
 				}
 				Gate.cancelPage = Gate.cancelPage.replace(/##/g, '#');
 				
 				changePage(Gate.cancelPage);
+			}
+			
+			if (Gate.cancelFunc === null && Gate.cancelPage === null) {
+				changePage("#home");
 			}
         });
         

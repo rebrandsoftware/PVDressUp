@@ -464,7 +464,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
             	}
             },
             loadContest: function(callback) {
-            	//console.log("loadContest");
+            	console.log("loadContest");
             	app.store.findContest(function(contest) {
             		if (contest === undefined) {
             			contest = null;
@@ -475,6 +475,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
             		} else {
             			app.currTheme = "Princess Pink";
             		}
+            		console.log(contest);
             		callback();
             	});
             },
@@ -885,10 +886,23 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 		                    			Toast.toast("Contest saved!");
 		                    		}
 		                    		//$('#btnResults').show();
-		                    		changePage("#home");
+		                    		
+		                    		if (app.myContest.social === true && Gate.bPassedGate !== true) {
+		                    			Gate.check(null, "#home", app.removeSharing, null, false);
+		                    		} else {
+		                    			changePage("#home");	
+		                    		}
 	                    		});
 	                    	});
 	                    }
+            },
+            removeSharing: function() {
+            	console.log("[APP]removeSharing");
+            	app.myContest.social = false;
+            	app.store.addContest(app.myContest, function() {
+            		Toast.toast("Sharing disabled for this contest");
+            		changePage("#home");
+            	});
             },
             submitEntry: function() {
             	//console.log("submit");
@@ -1878,11 +1892,8 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                	var imgCaption = $(this).attr("data-imgCaption");
 	                	//console.log("imgCaption");
 	                	//console.log(imgCaption);
-	                	Gate.check(null, null, null, "#results", false, function(result) {
-	                    		if (result === true) {
-	                    			Social.tweet(imgCaption, imgData);
-	                    		}
-	                    	});
+	                				Social.tweet(imgCaption, imgData);
+	                    		
 	                	
 	                });
 	                
@@ -2168,10 +2179,14 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                		$('#chkSavePhotos').attr('checked', false).checkboxradio("refresh");
 	                	}
 	                	
+	                	console.log(c);
+	                	
 	                	if (c.social === true) {
+	                		console.log("checked");
 	                		$('#chkSocial').attr('checked', true).checkboxradio("refresh");
 	                	} else {
 	                		$('#chkSocial').attr('checked', false).checkboxradio("refresh");
+	                		console.log("unchecked");
 	                	}
 	                	
 	                	if (c.saveVoterPhotos === true) {
@@ -2392,11 +2407,8 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                    }
 	
 	                    if (myType === "shareResults") {
-	                    	Gate.check(null, null, null, "#results", false, function(result) {
-	                    		if (result === true) {
 	                    			Social.tweet(shareText, imgData);
-	                    		}
-	                    	});
+	                    	
 	                    } else if (myType === "moreResults") {
 	                    	app.writeResultsMore(myID);	
 	                    }
