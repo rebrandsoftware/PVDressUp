@@ -299,10 +299,7 @@
         </div>
         
         <div data-role="footer" class="ui-bar" data-position="fixed" data-tap-toggle="false" data-theme="a">
-        	<a data-role="button" id="popupSocial" data-theme="a" href="#" data-icon="comment"  data-iconpos="left" style="float: left;">
-	          Social
-	        </a>
-            <a href="#" id="btnSettings" data-role="button" data-icon="gear" data-theme="a" style="float: right; margin-right: 30px;">Settings</a>
+        	<a href="#" id="btnSettings" data-role="button" data-icon="gear" data-theme="a" style="float: right; margin-right: 30px;">Settings</a>
         </div>
     </div>
     
@@ -318,7 +315,7 @@
         <div class="ui-content">
         	
         	<form id="frmGate" data-ajax="false" onsubmit="Gate.submit();return false;">
-        	<div id="info" class="ui-body ui-body-a ui-corner-all"><h1>Parental Gate</h1><h3>Kids: Ask Your Parents</h3><p>This dress-up app for kids contains advertisments and offers in-app purchases. Please see the Settings menu for parental control options.</p><p id="gateQuestion">To continue </p></div>
+        	<div id="info" class="ui-body ui-body-a ui-corner-all"><h1>Parental Gate</h1><h3>Kids: Ask Your Parents</h3><p>Before leaving the app to rate it or share content you need permission from your parents.</p><p id="gateQuestion">To continue </p></div>
         	<div data-role="ui-field-contain">
         		<div class="ui-field-contain">
                     <input type="text" id="txtGateAnswer" />
@@ -492,8 +489,6 @@
             </ul>
         </div>
         
-		<div class="debugDiv"></div>
-		
     </div>
 
 	<div data-role="page" id="results">
@@ -771,19 +766,6 @@
 		        </a>
                 
                 
-                <div class="ui-body ui-body-a ui-corner-all" id="divAskToUpgrade">
-                <p>
-                    If you are enjoying PartyVote please support it by upgrading to the ad-free version!
-                </p>
-                <a data-role="button" data-theme="d" data-icon="shop" class="btnGoToStore">
-	            Upgrade Now
-	          </a>
-	          <!--
-	          <a data-role="button" data-theme="d" data-icon="eye" class="btnPlayVideo">
-	            1 Hour Ad-free: Watch a Video
-	          </a>
-				-->              
-            </div>
         </div>
     </div>
     
@@ -1018,25 +1000,7 @@
         </div>
     </div>
     
-    <!-- ask to upgrade -->
-    <div data-role="page" data-dialog="true" id="promptForUpgrade">
-        <div class="ui-content">
-            <div class="ui-field-contain">
-                <p>
-                    If you are enjoying the app please support it by upgrading to the ad-free version!
-                </p>
-                <a data-role="button" data-theme="d" data-icon="shop" class="btnGoToStore">
-            Upgrade Now
-          </a>
-          <a data-role="button" data-theme="d" data-icon="eye" class="btnPlayVideo">
-            3 Hours Ad-free - Watch a Video
-          </a>
-                <a data-role="button" data-theme="e" data-icon="back" href="#home">
-            Close
-          </a>
-            </div>
-        </div>
-    </div>
+    
     
     
     <!-- confirm delete entry -->
@@ -1151,6 +1115,13 @@
     <script type="text/javascript" src="js/core/debug.js">
     </script>
     -->
+    
+        <script type="text/javascript" src="js/core/cloudAll.js">
+    </script>
+    
+        <script type="text/javascript" src="js/core/cloudLocal.js">
+    </script>
+    
     <script type="text/javascript" src="js/core/shell.js">
     </script>
     <script type="text/javascript" src="js/core/inout.js">
@@ -1159,23 +1130,7 @@
     </script>
     <script type="text/javascript" src="js/functions.js">
     </script>
-
-    <script type="text/javascript" src="js/core/cloudAll.js">
-    </script>
-    <script type="text/javascript" src="js/core/cloudLocal.js">
-    </script>
     
-    <script type="text/javascript" src="js/core/inAppLocal.js">
-    </script>
-    <script type="text/javascript" src="js/core/inAppAll.js">
-    </script>
-
-    
-    <script type="text/javascript" src="js/core/AdsLocal3.js">
-    </script>
-    
-    <script type="text/javascript" src="js/core/AdsAll3.js">
-    </script>
     
     <script type="text/javascript" src="js/core/popup.js">
     </script>
@@ -1197,8 +1152,6 @@
 
     <script type="text/javascript" src="js/main.js">
     </script>
-
-    <script type="text/javascript" src="lib/pnotify/pnotify.custom.min.js"></script>
 
     <script src="lib/crypto/base64.js"></script>
 

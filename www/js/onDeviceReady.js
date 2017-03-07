@@ -61,20 +61,7 @@ function onDeviceReady() {
         if (Device.platform === "WinPhone" || Device.platform == "Browser") {
             $('#clickToShare').hide();
         }
-        if (Device.platform === "Browser") {
-			        AdsAll.initNetwork("browser");        	
-        } else {
-        	        AdsAll.initNetwork("admob");
-        }
-
-		
-		AdsLocal.initialize(function() {
-			AdsAll.initialize(function() {
-				AdsAll.initNetwork("admob", function() {
-					app.showBannerDelay();	
-				});
-			});
-		});        
+        
         //app.initializeData();
         
         

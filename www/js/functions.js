@@ -1068,7 +1068,7 @@ Array.prototype.shuffle = function(callback) {
 };
 
 function numberToText(number) {
-	console.log(number);
+	//console.log(number);
 	var ret;
 	switch (number) {
 		case 0:

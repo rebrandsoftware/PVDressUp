@@ -187,18 +187,6 @@ var Social = {
                         icon: "check",
                         theme: "d"
                     },
-                    "No, I'm having trouble": {
-                        id: 'promptForFeedback',
-                        click: function() {
-                            //$('#buttonoutput').text('Cancel');
-                            //save 
-                            Social.setReviewStatus("feedback");
-                            Social.setReviewVersion(Globals.appVersion);
-                            Social.feedbackDialog();
-                        },
-                        icon: "comment",
-                        theme: "c"
-                    },
                     "I'm not sure, ask me later": {
                         id: 'promptRemindMe',
                         click: function() {
@@ -354,9 +342,8 @@ var Social = {
                     "Yes, rate it now!": {
                         id: 'promptForRate',
                         click: function() {
-                        	Social.setReviewStatus("reviewed");
-                            Social.setReviewVersion(Globals.appVersion);
-                            Social.launchReview();
+                        	Gate.check(Social.readyToReview, null, null, "home", false);
+                        	
                         },
                         icon: "check",
                         theme: "d"
@@ -490,7 +477,12 @@ var Social = {
             // // $elNoThanks.text(noThanks);
         // });
     // },
-
+	readyToReview: function() {
+		console.log("[SOCIAL]readyToReview");
+                        	Social.setReviewStatus("reviewed");
+                            Social.setReviewVersion(Globals.appVersion);
+                            Social.launchReview();
+	},
     launchURL: function(url, forceInApp) {
         //console.log(url);
         url = url.replace(/ /g, "%20");
@@ -648,6 +640,7 @@ var Social = {
 	},
     tweet: function(tweetText, picture) {
         //console.log('tweetText: ' + tweetText);
+        
         //console.log('picture: ' + picture.length);
         var tweetTextL = tweetText.toLowerCase();
         if (tweetTextL.indexOf("#AppName") === -1) {

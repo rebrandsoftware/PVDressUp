@@ -386,18 +386,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                	$('#btnColor4').css('background', colors[3]).button().button("refresh");
 	                	$('#btnColor5').css('background', colors[4]).button().button("refresh");
             },
-            showBannerDelay: function() {
-            	console.log("[APP]showBannerDelay");
-    			if (AdsAll.bShowedBanner === false) {
-            		InAppAll.isUpgraded(function(upgraded) {
-            			console.log("upgraded: " + upgraded);
-            			if (upgraded === false) {
-            				setTimeout(AdsAll.showBanner, 3000);
-            			}
-            		});
-            	}	
-            	
-            },
+            
             
             
             changeStyle: function(style, callback) {
@@ -953,7 +942,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 		                			app.entriesChanged = getTimestamp();
 		                			app.loadAllEntries(function() {
 		                				//console.log("after loadAllEntries");
-		                				Social.addActionable(1);
+		                				Social.addActionable(2);
 		                				Toast.toast("Thank you for entering the contest!");
 		                				changePage("#home");
 		                			});
@@ -1855,6 +1844,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
                 callback();
             },
         	initialize: function(callback) {
+        		//ConsoleDebug.initialize();
                 //console.log("[APP]initialize");
                 app.initializeVars(function() {
                 app.initializeTheme(function() {	
@@ -1877,6 +1867,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 		                        //console.log('Error: ' + errorMessage);
 		                    }
 		                );
+		                
 	                });
 	                
 	               
@@ -1887,28 +1878,26 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                	var imgCaption = $(this).attr("data-imgCaption");
 	                	//console.log("imgCaption");
 	                	//console.log(imgCaption);
-	                	Social.tweet(imgCaption, imgData);
+	                	Gate.check(null, null, null, "#results", false, function(result) {
+	                    		if (result === true) {
+	                    			Social.tweet(imgCaption, imgData);
+	                    		}
+	                    	});
+	                	
 	                });
 	                
 	                $('#cancelPassword').on('click', function() {
 	                	changePage("#home");
 	                });
-	                
+	          
 	                $('#btnBackToHomeFromResults').on('click', function() {
-            			InAppAll.isUpgraded(function(upgraded) {
-	                		//console.log("upgraded: " + upgraded);
-	                		if (upgraded === false) {
-	                			if (app.myContest.categories.length > 0 && app.allVotes.length > 0) {
-	                				AdsAll.showInterstitial();		
-	                			}
-	                			
-		                	} 
+            			
 		                	
 		                	if (app.myContest.categories.length > 0 && app.allVotes.length > 0) {
-		                		Social.addActionable(5);
+		                		Social.addActionable(10);
 		                	}
 		                	changePage('#home');
-	                	});
+	                
             	                	
 	                });
 	                
@@ -2018,11 +2007,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	            			$.mobile.loading('hide');
 	            		});
 	            		
-	            		InAppAll.isUpgraded(function(upgraded) {
-	                		if (upgraded === false) {
-		                		AdsAll.prepareInterstitialImage(false);
-		                	}
-	                	});
+	            		
 				                	
 	                });
 	                
@@ -2052,21 +2037,12 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                	app.writeVoteCategories();
 	                });
 	                
-	                $('#btnTestBanner').on('click', function() {
-	                	AdsAll.showBanner();
-	                });
 	                
-	                $('#btnTestRemoveInApp').on('click', function() {
-	                	app.store.deleteAllInAppPurchases(function() {
-	                		//console.log("Deleted all in app purchases");
-	                	});
-	                });
 	                
 	                
 	                $('#home').on('pagebeforeshow', function() {
 	                	//console.log("pagebeforeshow");
 	                	
-	                	app.showBannerDelay();
 	                	
 	                	app.lastPhoto = null;
 	                	app.lastVoterPhoto = null;
@@ -2416,7 +2392,11 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                    }
 	
 	                    if (myType === "shareResults") {
-	                    	Social.tweet(shareText, imgData);
+	                    	Gate.check(null, null, null, "#results", false, function(result) {
+	                    		if (result === true) {
+	                    			Social.tweet(shareText, imgData);
+	                    		}
+	                    	});
 	                    } else if (myType === "moreResults") {
 	                    	app.writeResultsMore(myID);	
 	                    }
@@ -2773,6 +2753,5 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
         var CategoryResults;
         var Contest;
         var getPlaceText;
-        var AdsAll;
-        var InAppAll;
+        
         */

@@ -55,10 +55,10 @@ var Gate = {
  		};
  		
  		var rightAnswer = function() {
- 			Toast.toast("Thank you!");
+ 			//Toast.toast("Thank you!");
  			Gate.setPassed(true);
- 			if (Gate.continueFunction !== null) {
- 				Gate.continueFunction();
+ 			if (Gate.continueFunc !== null) {
+ 				Gate.continueFunc();
  			} else if (Gate.continuePage !== null) {
  				var page = Gate.continuePage;
 				if (page.indexOf("#") === -1) {
@@ -83,19 +83,67 @@ var Gate = {
  			wrongAnswer();	
  		}
  	},
-	check: function(continueFunc, cancelPage, bNoCancel) {
+	check: function(continueFunc, continuePage, cancelFunc, cancelPage, bNoCancel, callback) {
+		console.log("[GATE]check " + Gate.bPassed);
+		var cont = function() {
+			if (continueFunc !== null) {
+				continueFunc();
+			}
+			if (continuePage !== null) {
+				if (continuePage.indexOf("#") !== 0) {
+					continuePage = "#" + continuePage;
+				}
+				continuePage = continuePage.replace(/##/g, '#');
+				changePage(continuePage);
+			}
+			
+			if (callback !== undefined && callback !== null) {
+				callback(true);
+			}
+				
+			
+		};
+		
+		var cancel = function() {
+			if (cancelFunc !== null) {
+				cancelFunc();
+			}
+			
+			if (cancelPage !== null) {
+				if (cancelPage.indexOf("#") !== 0) {
+					cancelPage = "#" + cancelPage;
+				}
+				cancelPage = cancelPage.replace(/##/g, '#');
+				
+				changePage(cancelPage);
+			}
+			
+			if (callback !== null && callback !== undefined) {
+				callback(false);
+			}
+		};
+		
+		
+		
     	if (Gate.bPassed === false) {
+    		console.log("hasn't passed yet");
 			Gate.getPassed(function(setting) {
+				console.log("getPassed: " + setting);
 	    		if (setting === true) {
 	    			Gate.bPassed = true;
-	    			continueFunc();
+	    			cont();
 	    		} else {
-	    			Gate.continueFunction = continueFunc;
+	    			Gate.continueFunc = continueFunc;
+	    			Gate.continuePage = continuePage;
+	    			Gate.cancelFun = cancelFunc;
 	    			Gate.cancelPage = cancelPage;
 	    			Gate.bNoCancel = bNoCancel;
 	    			changePage("#gate");
 	    		}
 	    	});		
+		} else {
+			console.log("Already passed");
+			cont();
 		}
     },
     getPassed: function(callback) {
@@ -107,8 +155,9 @@ var Gate = {
     	Shell.saveSetting("passedGate", setting);
     },
 	initialize: function() {
-		this.continueFunction=null;
+		this.continueFunc=null;
 		this.continuePage=null;
+		this.cancelFunc=null;
 		this.cancelPage=null;
 		this.bNoCancel = false;
 		this.bPassed=false;
@@ -116,11 +165,16 @@ var Gate = {
 		
 		 $('.cancelGate').on('click', function() {
 			console.log("clicked cancel button");
-			var page = Gate.cancelPage;
-			if (page.indexOf("#") === -1) {
-				page = "#" + page;
+			if (Gate.cancelFunc !== null) {
+				Gate.cancelFunc();
+			} else {
+				if (Gate.cancelPage.indexOf("#") !== 0) {
+					Gate.cancelPage = "#" + Gate.cancelPage;
+				}
+				Gate.cancelPage = Gate.cancelPage.replace(/##/g, '#');
+				
+				changePage(Gate.cancelPage);
 			}
-			changePage(page);
         });
         
         $('#gateSubmit').on('click', function() {
@@ -137,13 +191,7 @@ var Gate = {
 		
 		$('#btnGate').on('click', function() {
 			
-			var passedGate = function() {
-				Toast.toast("You passed the gate!");
-				changePage("#home");
-			};
-			
-			Gate.check(passedGate, "home", false);
-			
+			Social.askForReviewDialog();			
 		});
     
 	}
