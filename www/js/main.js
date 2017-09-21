@@ -1903,11 +1903,15 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	          
 	                $('#btnBackToHomeFromResults').on('click', function() {
             			
-		                	
-		                	if (app.myContest.categories.length > 0 && app.allVotes.length > 0) {
-		                		Review.incrementActionItems(function() {}, 10);
-		                	}
 		                	changePage('#home');
+		                	if (app.myContest.categories.length > 0 && app.allVotes.length > 0) {
+		                		Review.incrementActionItems(function() {
+		                			Review.askForReview(false, false, false, function(bShowedDialog) {
+				                		//console.log(bShowedDialog);
+				                	});
+		                		}, 10);
+		                	}
+		                	
 	                
             	                	
 	                });
@@ -2606,9 +2610,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                });
 	                
 	                $('#settings').on('pageshow', function() {
-	                	Review.askForReview(false, false, false, function(bShowedDialog) {
-	                		//console.log(bShowedDialog);
-	                	});
+	                	
 	                });
 	                
 	                $('#enter').on('pagebeforeshow', function() {
