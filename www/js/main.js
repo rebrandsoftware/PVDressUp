@@ -2058,6 +2058,14 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                $('#home').on('pagebeforeshow', function() {
 	                	//console.log("pagebeforeshow");
 	                	
+	                	if (app.askedForReviewOnce !== true) {
+	                		Review.incrementActionItems(function() {
+		                			Review.askForReview(false, false, false, function(bShowedDialog) {
+				                		//console.log(bShowedDialog);
+				                	});
+		                		}, 3);
+				                	app.askedForReviewOnce = true;
+	                	}
 	                	
 	                	app.lastPhoto = null;
 	                	app.lastVoterPhoto = null;
