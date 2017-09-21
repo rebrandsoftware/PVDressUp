@@ -451,16 +451,39 @@ var Social = {
         }
     },
 
-    launchReview: function() {
+     launchReview: function() {
         //console.log("[SOCIAL] launchReview");
-        var url;
-        url = Globals.socialRateURL;
-        url = url.replace(/\[OS\]/g, Device.platform);
-        url = url.replace(/\[APP_ID\]/g, Globals.appId);
-        if (Device.platform === "iOS") {
-            url = Globals.appStoreURL;
+        var myAppId;
+        var url = Globals.socialRateURL;
+        if (Device.platform !== "Browser") {
+        	if (Device.platform === "iOS") {
+        		myAppId = Globals.appIDiOS;
+	        	url = Globals.appStoreURL;
+	        } else if (Device.platform === "Android") {
+	        	myAppId = Globals.appIDAndroid;
+	        	url = Globals.appStoreURLAndroid;
+	        }
+	        
+	        
+	        var supported = LaunchReview.isRatingSupported();
+    		//alert("Rating dialog supported: " + (supported ? "YES" : "NO"));
+	        
+	        if(LaunchReview.isRatingSupported()){
+			    LaunchReview.rating();
+			}else{
+				//alert('myAppId');
+				LaunchReview.launch(myAppId, function (){
+			        //alert("Successfully launched review app " + myAppId);
+			    }, function (err){
+			    	Social.launchURL(url);
+			        //alert("Error launching review app: " + myAppId + ": " + err);
+			    });
+			}
         }
-        Social.launchURL(url);
+        
+        
+        // 
+        
     },
 
     friend: function() {
