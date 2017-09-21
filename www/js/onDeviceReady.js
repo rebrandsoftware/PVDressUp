@@ -50,20 +50,15 @@ function onDeviceReady() {
         // }); 
         // });
 
-        if (Device.platform === "WinPhone") {
-            //make all footers fixed
-            app.removeAllFixedFooters();
-            $('#clickToShare').hide();
-            document.addEventListener("backbutton", backKeyDown, true);
-            //$('#addPlayerContact').hide(); //WinPhone Contacts doesn't work properly SG v 1.4.5
-        }
+        
 
-        if (Device.platform === "WinPhone" || Device.platform == "Browser") {
-            $('#clickToShare').hide();
-        }
+        
         
         //app.initializeData();
         
+        if (Device.platform !== "Browser") {
+    	StatusBar.hide();    	
+    }
         
 	
     });
@@ -75,7 +70,7 @@ function backKeyDown() {
     //console.log($.mobile.activePage);
     if ($.mobile.activePage.attr("id") === "home") {
         //console.log("Home page, so exit app");
-        navigator.app.exitApp();
+        //navigator.app.exitApp();
     } else {
         var $el = $('.android-back', $.mobile.activePage);
         $el[0].click();
