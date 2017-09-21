@@ -35,10 +35,7 @@ var Shell = {
         });
     },
     initialize: function(callback) {
-        $('#popupSocial').on('click', function() {
-            //console.log("Popup Social");
-            Popup.socialDialog();
-        });
+        
 
         $('#creditsButton').on('click', function() {
             changePage('#credits');

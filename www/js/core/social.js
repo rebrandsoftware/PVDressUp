@@ -14,84 +14,7 @@ var Social = {
     	Social.setReviewVersion(Globals.appVersion);
         Social.feedbackDialog();
     },
-    askForReview: function(alwaysShow, alwaysUpdate, alwaysFeedback, callback) {
-        //console.log('ask for review');
-        var bFeedback = false;
-        var bUpdate = false;
-        var bShowedDialog=false;
-        Social.getActionables(function(ret) {
-        
-            //console.log('ret=' + ret);
-            if (alwaysShow === true) {
-                ret = Social.actionables;
-            }
-            
-            if (alwaysUpdate === true) {
-            	bUpdate = true;
-            }
-            
-            if (alwaysFeedback === true) {
-            	bFeedback = true;
-            }
-            
-            if (ret >= Social.actionables) {
-                //they have at least three actionable uses so see if we should ask about reviewing
-                //console.log('getting askForReview');
-                
-               Social.getReviewStatus(function(askForReview) {
-                    //console.log('ask for review: ' + askForReview);
-                    //}
-                    if (alwaysShow === true) {
-                        askForReview = 'remind';
-                    }
-                    switch (askForReview) {
-                        case 'remind':
-                            Social.enjoyingDialog(bUpdate, bFeedback);
-                            bShowedDialog = true;
-                            break;
-                        case 'never':
-                            //ignore it forever
-                            Social.setReviewStatus('never');
-                            break;
-                        case 'reviewed':
-                            //check if it matches version, ask if it has been updated
-                            Social.getReviewVersion(function(reviewVersion) {
-                                if (reviewVersion != Globals.appVersion) {
-                                	Social.setReviewStatus("remindUpdate");
-                                	Social.setActionables(1);
-                                }
-                            });
-                            break;
-                        case 'feedback':
-                            //check if it matches version, ask if it has been updated
-                            Social.getReviewVersion(function(reviewVersion) {
-                                if (reviewVersion != Globals.appVersion) {
-                                	Social.setReviewStatus("remindFeedback");
-                                	Social.setActionables(1);
-                                }
-                            });
-                            break;
-                        case 'remindUpdate': 
-                        	Social.enjoyingDialog(true, false);
-                        	bShowedDialog = true;
-                        	break;
-                        case 'remindFeedback':
-                        	Social.enjoyingDialog(false, true);
-                        	bShowedDialog = true;
-                        	break;
-                    }
-                    if (callback) {
-                    	callback(bShowedDialog);
-                    }
-                });
-            } else {
-            	if (callback) {
-                	callback(bShowedDialog);	
-                }
-            }
-        });
-        
-    },
+    
     feedbackDialog: function() {
         //console.log("FEEDBACK DIALOG");
 		if ($.mobile.sdCurrentDialog) {
@@ -327,53 +250,7 @@ var Social = {
 
            
 	},
-	askForReviewDialog: function(updated, feedback) {
-		//console.log("ENJOYING DIALOG");
-        	if ($.mobile.sdCurrentDialog) {
-        		$.mobile.sdCurrentDialog.close();
-        	}
-            $('<div>').simpledialog2({
-                mode: 'button',
-                headerText: "",
-                headerClose: true,
-                buttonPrompt: "That's great news! Do you have a moment to support this app by providing a rating?",
-                top: 25,
-                buttons: {
-                    "Yes, rate it now!": {
-                        id: 'promptForRate',
-                        click: function() {
-                        	Gate.check(Social.readyToReview, null, null, "home", false);
-                        	
-                        },
-                        icon: "check",
-                        theme: "d"
-                    },
-                    "Not now, ask me later": {
-                        id: 'promptRemindMe',
-                        click: function() {
-                            //$('#buttonoutput').text('Cancel');
-                            //save 
-                            Social.setReviewStatus("remind");
-                            Social.setActionables(0);
-                        },
-                        icon: "clock",
-                        theme: "b"
-                    },
-                    "Please don't ask again": {
-                        id: 'promptNoThanks',
-                        click: function() {
-                            //$('#buttonoutput').text('Cancel');
-                            //save 
-                             Social.setReviewStatus("never");
-                        },
-                        icon: "forbidden",
-                        theme: "e"
-                    }
-                }
-            });
-
-           
-	},
+	
     // reviewDialog: function(updated, feedback) {
         // //console.log("REVIEW DIALOG");
         // var revText;
@@ -477,12 +354,7 @@ var Social = {
             // // $elNoThanks.text(noThanks);
         // });
     // },
-	readyToReview: function() {
-		console.log("[SOCIAL]readyToReview");
-                        	Social.setReviewStatus("reviewed");
-                            Social.setReviewVersion(Globals.appVersion);
-                            Social.launchReview();
-	},
+	
     launchURL: function(url, forceInApp) {
         //console.log(url);
         url = url.replace(/ /g, "%20");
@@ -719,65 +591,108 @@ var Social = {
             Social.launchURL(url);
         }
     },
-    addActionable: function(i, callback) {
-    	//console.log("[SOCIAL]addActionable " + i);
-    	Shell.getSetting("reviewUse", 0, function(setting) {
-			var iSetting = parseInt(setting, 10);
-			if (iSetting <= Social.actionables) {
-				iSetting = iSetting + i;	
-				//console.log("new value: " + iSetting);
-				Shell.saveSetting("reviewUse", iSetting);
-			}
-			
-			if (callback) {
-				callback();
-			}
-		});
-    },
-    setActionables: function(i, callback) {
-    	//console.log("[SOCIAL]setActionables " + i);
-    	if (i <= Social.actionables) {
-    		Shell.saveSetting("reviewUse", i);	
-    	}
-		if (callback) {
-			callback();
-		}
-    },
-    getActionables: function(callback) {
-    	//console.log("[SOCIAL]getActionables ");
-    	Shell.getSetting("reviewUse", 0, function(setting) {
-    		var ret = parseInt(setting, 10);
-    		//console.log(ret);
-    		callback(ret);
-    	});
-    },
-    getReviewStatus: function(callback) {
-    	//console.log("[SOCIAL]getReviewStatus");
-    	Shell.getSetting('askForReview', 'remind', function(setting) {
-    		//console.log(setting);
-    		callback(setting);	
-    	});
-    },
-    setReviewStatus: function(status, callback) {
-    	//console.log("[SOCIAL]setReviewStatus " + status);
-    	Shell.saveSetting('askForReview', status);
-    	if (callback) {
-    		callback();
-    	}
-    },
-    getReviewVersion: function(callback) {
-    	//console.log("[SOCIAL]getReviewVersion ");
-    	Shell.getSetting('reviewVersion', '0.0', function(setting) {
-    		//console.log(setting);
-    		callback(setting);	
-    	});
-    },
-    setReviewVersion: function(version, callback) {
-    	//console.log("[SOCIAL]setReviewVersion " + version);
-    	Shell.saveSetting('reviewVersion', version);
-    	if (callback) {
-    		callback();
-    	}
+    reviewDialog: function(updated) {
+        console.log("REVIEW DIALOG");
+        var revText;
+        var feedbackText;
+        var reviewVersion;
+        Shell.getSetting("reviewVersion", Globals.appVersion, function(setting) {
+
+            //console.log("reviewVersion: " + reviewVersion);
+            if (setting != Globals.appVersion) {
+                updated = true;
+            } else {
+                updated = false;
+            }
+
+            //console.log("updated: " + updated);
+
+            if (updated === false) {
+                revText = "Please take a moment to leave a short review.";
+            } else {
+                revText = "Please take a moment to review this version.";
+            }
+
+            feedbackText = "Having trouble? Send feedback and we can help!";
+
+            revText = revText + "<BR><BR>" + feedbackText;
+
+            var rate = "Enjoying PV: Dress Up?";
+
+            //console.log("Review document delegate");
+
+            $('<div>').simpledialog2({
+                mode: 'button',
+                headerText: rate,
+                headerClose: true,
+                buttonPrompt: revText,
+                top: 25,
+                buttons: {
+                    'Rate App': {
+                        id: 'promptRateNow',
+                        click: function() {
+                            //$('#buttonoutput').text('OK');
+                            //Launch the URL
+                            //save setting
+                            //console.log("Rate 5 Clicked");
+                            Shell.saveSetting("askForReview" + Globals.appReviewVersion, "reviewed");
+                            Shell.saveSetting("reviewVersion", Globals.appVersion);
+                            Social.launchReview();
+                        },
+                        icon: "star",
+                        theme: "d"
+                    },
+                    'Send Feedback': {
+                        id: 'promptFeedback',
+                        click: function() {
+                            //$('#buttonoutput').text('Cancel');
+                            //save setting
+                            Shell.saveSetting('askForReview' + Globals.appReviewVersion, 'reviewed');
+                            Shell.saveSetting('reviewVersion', Globals.appVersion);
+                            Social.feedbackDialog();
+                        },
+                        icon: "comment",
+                        theme: "c"
+                    },
+                    'Remind me later': {
+                        id: 'promptRemindMe',
+                        click: function() {
+                            //$('#buttonoutput').text('Cancel');
+                            //save setting
+                            Shell.saveSetting("askForReview" + Globals.appReviewVersion, "remind");
+                            Shell.saveSetting("reviewUse" + Globals.appReviewVersion, "0");
+                        },
+                        icon: "clock",
+                        theme: "b"
+                    },
+                    'No, thank you': {
+                        id: 'promptNoThanks',
+                        click: function() {
+                            //$('#buttonoutput').text('Cancel');
+                            //save setting
+                            Shell.saveSetting("askForReview" + Globals.appReviewVersion, "never");
+                        },
+                        icon: "forbidden",
+                        theme: "e"
+                    }
+                }
+            });
+
+            //var rate5Stars = i18n.t('global2.rate5Stars'); //"Rate 5 Stars"
+            // var remindMe = i18n.t('social.remindMe'); //"Remind me later"
+            // var noThanks = i18n.t('social.noThanks'); //"No, thank you"
+            // var feedback = i18n.t('global2.sendFeedback'); //"Send Feedback"
+            //         
+            // var $elRate5Stars = $('#promptRateNow .ui-btn-text');
+            // var $elRemindMe = $('#promptRemindMe .ui-btn-text');
+            // var $elNoThanks = $('#promptNoThanks .ui-btn-text');
+            // var $elFeedback = $('#promptFeedback .ui-btn-text');
+            //         
+            // $elRate5Stars.text(rate5Stars);
+            // $elFeedback.text(feedback);
+            // $elRemindMe.text(remindMe);
+            // $elNoThanks.text(noThanks);
+        });
     },
     initialize: function() {
     	this.actionables = 45;

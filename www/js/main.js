@@ -956,7 +956,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 		                			app.entriesChanged = getTimestamp();
 		                			app.loadAllEntries(function() {
 		                				//console.log("after loadAllEntries");
-		                				Social.addActionable(2);
+		                				Review.incrementActionItems(function(){}, 2);
 		                				Toast.toast("Thank you for entering the contest!");
 		                				changePage("#home");
 		                			});
@@ -1905,7 +1905,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
             			
 		                	
 		                	if (app.myContest.categories.length > 0 && app.allVotes.length > 0) {
-		                		Social.addActionable(10);
+		                		Review.incrementActionItems(function() {}, 10);
 		                	}
 		                	changePage('#home');
 	                
@@ -2604,7 +2604,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                });
 	                
 	                $('#settings').on('pageshow', function() {
-	                	Social.askForReview(false, false, false, function(bShowedDialog) {
+	                	Review.askForReview(false, false, false, function(bShowedDialog) {
 	                		//console.log(bShowedDialog);
 	                	});
 	                });

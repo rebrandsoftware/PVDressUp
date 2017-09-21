@@ -33,13 +33,13 @@ var Popup = {
             headerClose: true,
             top: 75,
             buttons: {
-                'Send Love': {
+                'Rate App': {
                     id: 'socialRate',
                     click: function() {
                     	if ($.mobile.sdCurrentDialog) {
         		$(document).trigger('simpledialog', {'method':'close'});
         	}
-                        Social.askForReview(true);
+                        Review.askForReview(true);
                     },
                     icon: "heart",
                     theme: "d"
