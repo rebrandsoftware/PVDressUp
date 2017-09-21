@@ -69,7 +69,7 @@ Review = {
         if (toIncrement === undefined) {
         	toIncrement = 1;
         }
-        app.getSetting("reviewUse" + Globals.appReviewVersion, "0", function(setting) {
+        Shell.getSetting("reviewUse" + Globals.appReviewVersion, "0", function(setting) {
             //console.log("settings callback review");
             //console.log(setting);
             s = setting;
@@ -77,7 +77,7 @@ Review = {
             ret = parseInt(s, 10);
             //console.log("ret=" + ret);
             ret = ret + toIncrement;
-            app.saveSetting("reviewUse" + Globals.appReviewVersion, ret, function() {
+            Shell.saveSetting("reviewUse" + Globals.appReviewVersion, ret, function() {
             	//console.log(callback);
                 if (callback) {
                     callback();

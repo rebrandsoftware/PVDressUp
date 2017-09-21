@@ -887,11 +887,11 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 		                    		}
 		                    		//$('#btnResults').show();
 		                    		
-		                    		if (app.myContest.social === true && Gate.bPassedGate !== true) {
-		                    			Gate.check(null, "#home", app.removeSharing, null, false);
-		                    		} else {
+		                    		//if (app.myContest.social === true && Gate.bPassedGate !== true) {
+		                    		//	Gate.check(null, "#home", app.removeSharing, null, false);
+		                    		//} else {
 		                    			changePage("#home");	
-		                    		}
+		                    		//}
 	                    		});
 	                    	});
 	                    }
@@ -2067,6 +2067,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 	                	
 	                	if (app.myContest === null) {
 	                		var category = new Category("Best Costume");
+	                		/*
 	                		app.myContest = new Contest(getTimestamp(), "", "Dress Up Party", "Princess Pink", true, false, false, false, false, true, [category], false, false, "", false, false, "", false);
 	                		app.addCategories(app.myContest.categories, function() {
 	                    		app.store.addContest(app.myContest, function() {
@@ -2085,6 +2086,7 @@ $.mobile.changeGlobalTheme = function(oldTheme, newTheme)
 		                    		//changePage("#home");
 	                    		});
 	                    	});
+	                    	*/
 	                	}
 	                	
 	                	if (app.myContest === null) {

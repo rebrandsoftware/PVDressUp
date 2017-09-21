@@ -301,33 +301,7 @@
         </div>
     </div>
     
-    <div data-role="page" id="gate">
-        <div data-theme="a" data-role="header">
-        	<a data-role="button" data-theme="e" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left android-back cancelGate">
-	            Cancel
-	        </a>
-	        <h3 id="contestName">
-	          PartyVote: Dress Up
-	        </h3>
-        </div>
-        <div class="ui-content">
-        	
-        	<form id="frmGate" data-ajax="false" onsubmit="Gate.submit();return false;">
-        	<div id="info" class="ui-body ui-body-a ui-corner-all"><h1>Parental Gate</h1><h3>Kids: Ask Your Parents</h3><p>Before leaving the app to rate it, or enabling sharing, you need permission from your parents.</p><p id="gateQuestion">To continue </p></div>
-        	<div data-role="ui-field-contain">
-        		<div class="ui-field-contain">
-                    <input type="text" id="txtGateAnswer" />
-				</div>
-				<div class="ui-field-contain">	
-		                <a data-role="button" data-theme="d" id="gateSubmit">
-		            Submit
-		          </a>
-		        </div>
-        	</div>
-           </form>
-        </div>
-        
-    </div>
+    
 
 	<div data-role="page" id="enter">
         <div data-theme="a" data-role="header">
@@ -512,7 +486,7 @@
 	        		</div>
 	        		<div id="resultsDiv0" style="text-align: center;">
 	        				<h3 id='resultsTitle0'>Category</h3>
-	        			    <img src="/" id="resultsImage0" width="1" height="1" alt="gallery" />
+	        			    <img src="/" id="resultsImage0" width="1" height="1" alt="" />
 		                <a data-role="button" id="btnResultsShare0" data-theme="d" href="#" data-icon="action" data-iconpos="left" class="resultsShare" data-imgCaption="" data-imgData="">
 				          Share
 				        </a>
@@ -1133,8 +1107,6 @@
     <script type="text/javascript" src="js/core/popup.js">
     </script>
 
-	<script type="text/javascript" src="js/core/gate.js">
-    </script>
 
     <script type="text/javascript" src="js/core/fileIO.js">
     </script>
